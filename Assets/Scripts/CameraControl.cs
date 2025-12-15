@@ -1,23 +1,29 @@
+using System.Collections;
+using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
-public class CameraFollow : MonoBehaviour
+public class CameraControl : MonoBehaviour
 {
-    public Transform target; // Drag your 'Player' here in the Inspector
-    public Vector3 offset = new Vector3(0f, 5f, -7f); // Distance behind/above player
-    public float smoothSpeed = 0.125f; // How smoothly the camera follows
-
-    void LateUpdate()
+    [SerializeField] float offsetZ;
+    Transform playerPosition;
+    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    void Start()
     {
-        if (target == null) return;
-
-        Vector3 desiredPosition = target.position + offset;
+        playerPosition = FindAnyObjectByType<PlayerMovement>().transform;
         
-        // Use Lerp for smooth movement
-        Vector3 smoothedPosition = Vector3.Lerp(transform.position, desiredPosition, smoothSpeed);
-        
-        transform.position = smoothedPosition;
+    }
 
-        // Keep the camera looking at the target
-        transform.LookAt(target);
+    // Update is called once per frame
+    void Update()
+    {
+        FollowPlayer();
+    }
+
+    void FollowPlayer()
+    {
+        //position of the camera
+        Vector3 targetPosition = new Vector3(playerPosition.position.x, transform.position.y, playerPosition.position.z - offsetZ);
+        transform.position = targetPosition;
     }
 }

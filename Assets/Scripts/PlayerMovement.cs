@@ -33,7 +33,14 @@ public class PlayerMovement : MonoBehaviour
 
         if(dir.magnitude >= 0.1f)
         {
-            transform.rotation = Quaternion.LookRotation(dir);
+            Quaternion targetRotation = Quaternion.LookRotation(dir);
+            float rotationSpeed = 10f;
+
+            transform.rotation = Quaternion.Slerp(
+                transform.rotation,         
+                targetRotation,             
+                Time.deltaTime * rotationSpeed 
+            );
         }
 
         controller.Move(velocity);
