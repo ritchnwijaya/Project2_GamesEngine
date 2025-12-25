@@ -338,6 +338,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CameraControl
   offsetZ: 7
+  smoothing: 2
 --- !u!114 &1315768197
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -7,12 +7,16 @@ public class PlayerMovement : MonoBehaviour
     [Header("Movement")]
     [SerializeField] float playerSpeed;
     private CharacterController controller;
+
+    PlayerInteraction playerInteraction;
     private Animator animator;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         controller = GetComponent<CharacterController>();
         animator = GetComponent<Animator>();
+
+        playerInteraction = GetComponentInChildren<PlayerInteraction>();
         
     }
 
@@ -20,6 +24,16 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         Move();
+        Interact();
+        
+    }
+
+    public void Interact()
+    {
+        if (Input.GetButtonDown("Fire1"))
+        {
+            playerInteraction.Interact();
+        }
         
     }
 
