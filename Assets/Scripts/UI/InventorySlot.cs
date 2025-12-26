@@ -4,10 +4,18 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class InventorySlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+public class InventorySlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
 {
     ItemData itemToDisplay;
     public Image itemDisplayImage;
+
+    public enum InventoryType
+    {
+        Item,Tool
+    }
+    public InventoryType inventoryType;
+
+    int slotIndex;
     public void Display(ItemData itemToDisplay)
     {
         if (itemToDisplay != null)
@@ -28,5 +36,15 @@ public class InventorySlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     public void OnPointerExit(PointerEventData eventData)
     {
         throw new System.NotImplementedException(null);
+    }
+
+    public virtual void OnPointerClick(PointerEventData eventData)
+    {
+        InventoryManager.Instance.InventoryToHand(slotIndex, inventoryType);
+    }
+
+    public void AssignIndex(int slotIndex)
+    {
+        this.slotIndex = slotIndex;
     }
 }

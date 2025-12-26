@@ -12,3 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3330179b6d5d64dab9045ba558c7bed4, type: 3}
   m_Name: Cabbage
   m_EditorClassIdentifier: Assembly-CSharp::ItemData
+  description: Cabbage
+  thumbnail: {fileID: -635675935, guid: 61bbc5f77488e4a32b4172ad4b0f8689, type: 3}
+  gameModel: {fileID: 0}
