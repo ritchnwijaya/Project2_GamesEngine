@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Land : MonoBehaviour
+public class Land : MonoBehaviour, ITimeTracker
 {
     public enum LandStatus
     {
@@ -15,14 +15,27 @@ public class Land : MonoBehaviour
 
     new Renderer renderer;
 
+// cache the time the land was watered
     public GameObject select;
+
+    GameTimeStamp timeWatered; 
+
+    [Header("Crops")]
+
+    public GameObject cropPrefab;
+
+    CropBehaviour cropPlanted = null; 
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
-    {
+    { 
         renderer = GetComponent<Renderer>();
         SwitchLandStatus(LandStatus.Soil);
         Select(false);
+
+        // add this to TimeManager listener list
+        TimeManager.Instance.RegisterTracker(this);
     }
 
 
@@ -40,6 +53,9 @@ public class Land : MonoBehaviour
                 break;
             case LandStatus.Watered:
                 materialToSwitch = wateredMat;
+
+                //cache the time it was watered
+                timeWatered = TimeManager.Instance.GetGameTimeStamp();
                 break;
         }
         renderer.material = materialToSwitch;
@@ -53,6 +69,11 @@ public class Land : MonoBehaviour
     public void Interact()
     {
         ItemData toolSlot = InventoryManager.Instance.equippedTool;
+
+        if(toolSlot == null)
+        {
+            return;
+        }
         EquipmentData equipmentTool = toolSlot as EquipmentData;
         if (equipmentTool != null)
         {
@@ -66,6 +87,47 @@ public class Land : MonoBehaviour
                     SwitchLandStatus(LandStatus.Watered);
                     break;
             }
+            // we don't have to check for seeds if we have already confirmed the tool to be an equipment
+            return;
         }
+        SeedData seedTool = toolSlot as SeedData;
+
+        // conditions for player to be able to plant a seed
+        //1: player is holding a tool of type seedData
+        //2: The Land state must be either watered or farmland
+        // 3: There isn't already a crop that has been planted
+        if(seedTool != null && landStatus != LandStatus.Soil && cropPlanted == null)
+        {
+            GameObject cropObject = Instantiate(cropPrefab, transform);
+            // move crop object to top of land object
+            cropObject.transform.position = new Vector3(transform.position.x, 0, transform.position.z);
+
+            cropPlanted = cropObject.GetComponent<CropBehaviour>();
+            cropPlanted.Plant(seedTool);
+        }
+    }
+
+    public void ClockUpdate(GameTimeStamp timestamp)
+    {
+        // check if 24h passed since last watered
+        if(landStatus == LandStatus.Watered)
+        {
+            //hours since last watered
+            int hoursElapsed = GameTimeStamp.CompareTimeStamps(timeWatered, timestamp);
+            Debug.Log(hoursElapsed  + "since this was watered");
+
+            // grow the planted crop
+            if(cropPlanted != null)
+            {
+                cropPlanted.Grow();
+            }
+            
+            if(hoursElapsed > 24)
+            {
+                // dry up/switch back to farmland
+                SwitchLandStatus(LandStatus.Farmland);
+            }
+        }
+
     }
 }
