@@ -1550,7 +1550,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 208c0e8081f8041d6869c878272d6084, type: 2}
   - {fileID: 11400000, guid: 5fb38be88af0646f38966969405f9e7d, type: 2}
   - {fileID: 11400000, guid: ab37982fd3fac4dd8aac8b76af82012a, type: 2}
-  - {fileID: 0}
+  - {fileID: 11400000, guid: 79aab0c9890b6487089480ca933ff154, type: 2}
   - {fileID: 0}
   - {fileID: 0}
   equippedTool: {fileID: 0}
@@ -5526,6 +5526,120 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ed20d9f0155a149268e13a1869a01d1f, type: 3}
+--- !u!1001 &1613444516240052164
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 6151440045950673346, guid: 1bc80651791bc46f194e88d7e9a4e280, type: 3}
+      propertyPath: m_Name
+      value: Tomato
+      objectReference: {fileID: 0}
+    - target: {fileID: 8794376189014352486, guid: 1bc80651791bc46f194e88d7e9a4e280, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8794376189014352486, guid: 1bc80651791bc46f194e88d7e9a4e280, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8794376189014352486, guid: 1bc80651791bc46f194e88d7e9a4e280, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8794376189014352486, guid: 1bc80651791bc46f194e88d7e9a4e280, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 8794376189014352486, guid: 1bc80651791bc46f194e88d7e9a4e280, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 8794376189014352486, guid: 1bc80651791bc46f194e88d7e9a4e280, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8794376189014352486, guid: 1bc80651791bc46f194e88d7e9a4e280, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8794376189014352486, guid: 1bc80651791bc46f194e88d7e9a4e280, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 8794376189014352486, guid: 1bc80651791bc46f194e88d7e9a4e280, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8794376189014352486, guid: 1bc80651791bc46f194e88d7e9a4e280, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 1bc80651791bc46f194e88d7e9a4e280, type: 3}
+--- !u!1001 &3431842978978739927
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 5176926539354887203, guid: b225bd859a132420c85c9e84349a2832, type: 3}
+      propertyPath: m_Name
+      value: Tomato Seedling
+      objectReference: {fileID: 0}
+    - target: {fileID: 7196601160281403522, guid: b225bd859a132420c85c9e84349a2832, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7196601160281403522, guid: b225bd859a132420c85c9e84349a2832, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7196601160281403522, guid: b225bd859a132420c85c9e84349a2832, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7196601160281403522, guid: b225bd859a132420c85c9e84349a2832, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7196601160281403522, guid: b225bd859a132420c85c9e84349a2832, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7196601160281403522, guid: b225bd859a132420c85c9e84349a2832, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7196601160281403522, guid: b225bd859a132420c85c9e84349a2832, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7196601160281403522, guid: b225bd859a132420c85c9e84349a2832, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7196601160281403522, guid: b225bd859a132420c85c9e84349a2832, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7196601160281403522, guid: b225bd859a132420c85c9e84349a2832, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: b225bd859a132420c85c9e84349a2832, type: 3}
 --- !u!1001 &6904989263665270600
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5592,6 +5706,63 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1aa604f239ae946d3ad2d3828427a8da, type: 3}
+--- !u!1001 &8058424472106841033
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2022101179918658172, guid: 6d5234a478bb6438cac7ea299099d4d0, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2022101179918658172, guid: 6d5234a478bb6438cac7ea299099d4d0, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2022101179918658172, guid: 6d5234a478bb6438cac7ea299099d4d0, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2022101179918658172, guid: 6d5234a478bb6438cac7ea299099d4d0, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2022101179918658172, guid: 6d5234a478bb6438cac7ea299099d4d0, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2022101179918658172, guid: 6d5234a478bb6438cac7ea299099d4d0, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2022101179918658172, guid: 6d5234a478bb6438cac7ea299099d4d0, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2022101179918658172, guid: 6d5234a478bb6438cac7ea299099d4d0, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2022101179918658172, guid: 6d5234a478bb6438cac7ea299099d4d0, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2022101179918658172, guid: 6d5234a478bb6438cac7ea299099d4d0, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8487971339753076864, guid: 6d5234a478bb6438cac7ea299099d4d0, type: 3}
+      propertyPath: m_Name
+      value: Tomato Harvestable
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 6d5234a478bb6438cac7ea299099d4d0, type: 3}
 --- !u!1001 &8903204490703682329
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5689,3 +5860,6 @@ SceneRoots:
   - {fileID: 1269243428}
   - {fileID: 1974236675}
   - {fileID: 1450606231}
+  - {fileID: 1613444516240052164}
+  - {fileID: 3431842978978739927}
+  - {fileID: 8058424472106841033}

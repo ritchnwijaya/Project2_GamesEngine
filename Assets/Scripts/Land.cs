@@ -86,6 +86,13 @@ public class Land : MonoBehaviour, ITimeTracker
                 case EquipmentData.ToolType.WateringCan:
                     SwitchLandStatus(LandStatus.Watered);
                     break;
+
+                case EquipmentData.ToolType.Shovel:
+                    if(cropPlanted != null)
+                    {
+                        Destroy(cropPlanted.gameObject);
+                    }
+                    break;
             }
             // we don't have to check for seeds if we have already confirmed the tool to be an equipment
             return;
@@ -121,11 +128,20 @@ public class Land : MonoBehaviour, ITimeTracker
             {
                 cropPlanted.Grow();
             }
-            
+
             if(hoursElapsed > 24)
             {
                 // dry up/switch back to farmland
                 SwitchLandStatus(LandStatus.Farmland);
+            }
+        }
+
+        // handle wilting
+        if(landStatus != LandStatus.Watered && cropPlanted != null)
+        {
+            if(cropPlanted.cropState != CropBehaviour.CropState.Seed)
+            {
+                cropPlanted.Wither();
             }
         }
 

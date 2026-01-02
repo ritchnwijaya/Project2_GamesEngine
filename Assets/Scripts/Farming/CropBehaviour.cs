@@ -7,16 +7,20 @@ public class CropBehaviour : MonoBehaviour
     SeedData seedToGrow;
     [Header("Stages of Life")]
     public GameObject seed;
+    public GameObject wilted;
     public GameObject seedling;
-    public GameObject harvestable;
+    public GameObject harvestable; 
 
     int growth;
     // how many growth points it takes before it becomes harvestable
     int maxGrowth;
+    // crop can stay alive for 48h before it dies
+    int maxHealth = GameTimeStamp.HoursToMinutes(48);
+    int health;
 
     public enum CropState
     {
-        Seed, Seedling, Harvestable
+        Seed, Seedling, Harvestable, Wilted
     }
     // current crop growth
     public CropState cropState;
@@ -35,6 +39,14 @@ public class CropBehaviour : MonoBehaviour
         int hoursToGrow  = GameTimeStamp.DaysToHours(seedToGrow.daysToGrow);
         maxGrowth = GameTimeStamp.HoursToMinutes(hoursToGrow);
 
+        // check if regrowable
+        if (seedToGrow.regrowable)
+        {
+            // get RegrowableHarvestBehaviour from the game object
+            RegrowableHarvestBehaviour regrowableHarvest = harvestable.GetComponent<RegrowableHarvestBehaviour>();
+            regrowableHarvest.SetParent(this);
+        }
+
         SwitchState(CropState.Seed);
 
     }
@@ -43,8 +55,13 @@ public class CropBehaviour : MonoBehaviour
     {
         growth++;
 
+        // restore some health when its watered
+        if(health < maxHealth)
+        {
+            health++;
+        }
+
         // seed will sprout to seedling when growth is at 50% 
-        
         if(growth >= maxGrowth / 2 && cropState == CropState.Seed)
         {
             SwitchState(CropState.Seedling);
@@ -55,11 +72,22 @@ public class CropBehaviour : MonoBehaviour
         }
     }
 
+    // crop withers when soil is dry
+    public void Wither()
+    {
+        health--;
+        if(health <= 0 && cropState != CropState.Seed)
+        {
+            SwitchState(CropState.Wilted);
+        }
+    }
+
     void SwitchState(CropState stateToSwitch)
     {
         seed.SetActive(false);
         seedling.SetActive(false);
         harvestable.SetActive(false);
+        wilted.SetActive(false);
 
         switch (stateToSwitch)
         {
@@ -68,14 +96,31 @@ public class CropBehaviour : MonoBehaviour
                 break;
             case CropState.Seedling:
                 seedling.SetActive(true);
+                health = maxHealth;
                 break;
             case CropState.Harvestable:
                 harvestable.SetActive(true);
-                harvestable.transform.parent = null;
-                Destroy(gameObject);
+
+                // if seed not regrowable, detach the harvestable from this crop gameobject and destroy it
+                if (!seedToGrow.regrowable)
+                {
+                    harvestable.transform.parent = null;
+                    Destroy(gameObject);
+                }
+                break;
+            case CropState.Wilted:
+                wilted.SetActive(true);
                 break;
         }
 
         cropState = stateToSwitch;
+    }
+
+    public void Regrow()
+    {
+        // reset growth, get regrowth time in hours
+        int hoursToRegrow = GameTimeStamp.DaysToHours(seedToGrow.daysToRegrow);
+        growth = maxGrowth - GameTimeStamp.HoursToMinutes(hoursToRegrow);
+        SwitchState(CropState.Seedling);
     }
 }
