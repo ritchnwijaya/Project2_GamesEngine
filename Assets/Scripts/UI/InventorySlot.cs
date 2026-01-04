@@ -7,7 +7,10 @@ using UnityEngine.UI;
 public class InventorySlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
 {
     ItemData itemToDisplay;
+    int quantity;
+    
     public Image itemDisplayImage;
+    public Text quantityText;
 
     public enum InventoryType
     {
@@ -16,12 +19,21 @@ public class InventorySlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     public InventoryType inventoryType;
 
     int slotIndex;
-    public void Display(ItemData itemToDisplay)
+    public void Display(ItemSlotData itemSlot)
     {
+        itemToDisplay = itemSlot.itemData;
+        quantity = itemSlot.quantity;
+        quantityText.text = "";
+
         if (itemToDisplay != null)
         {
             itemDisplayImage.sprite = itemToDisplay.thumbnail;
-            this.itemToDisplay = itemToDisplay;
+
+            if(quantity > 1)
+            {
+                quantityText.text = quantity.ToString();
+            } 
+
             itemDisplayImage.gameObject.SetActive(true);
             return;
         }

@@ -10,6 +10,8 @@ public class UIManager : MonoBehaviour, ITimeTracker
     [Header("Status Bar")]
     //Tool equip slot on the status bar
     public Image toolEquipSlot;
+    public Text toolQuantityText; 
+
     // Time UI
     public Text timeText;
     public Text dateText;
@@ -58,17 +60,19 @@ public class UIManager : MonoBehaviour, ITimeTracker
 
     public void RenderInventory()
     {
-        //get the inventory tool slots from inventory manager
-        ItemData[] inventoryToolSlots = InventoryManager.Instance.tools;
-        ItemData[] inventoryItemSlots = InventoryManager.Instance.items;
+        ItemSlotData[] inventoryToolSlots = InventoryManager.Instance.GetInventorySlots(InventorySlot.InventoryType.Tool);
+        ItemSlotData[] inventoryItemSlots = InventoryManager.Instance.GetInventorySlots(InventorySlot.InventoryType.Item);
+
         RenderInventoryPanel(inventoryToolSlots, toolSlots);
         RenderInventoryPanel(inventoryItemSlots, itemSlots);
 
-        toolHandSlot.Display(InventoryManager.Instance.equippedTool);
-        itemHandSlot.Display(InventoryManager.Instance.equippedItem);
-        
+        //Render the equipped slots
+        toolHandSlot.Display(InventoryManager.Instance.GetEquippedSlot(InventorySlot.InventoryType.Tool));
+        itemHandSlot.Display(InventoryManager.Instance.GetEquippedSlot(InventorySlot.InventoryType.Item));
 
-        ItemData equippedTool = InventoryManager.Instance.equippedTool;
+        //Get Tool Equip from InventoryManager
+        ItemData equippedTool = InventoryManager.Instance.GetEquippedSlotItem(InventorySlot.InventoryType.Tool);
+        toolQuantityText.text = "";
 
         //Check if there is an item to display
         if (equippedTool != null)
@@ -77,6 +81,11 @@ public class UIManager : MonoBehaviour, ITimeTracker
             toolEquipSlot.sprite = equippedTool.thumbnail;
 
             toolEquipSlot.gameObject.SetActive(true);
+            int quantity = InventoryManager.Instance.GetEquippedSlot(InventorySlot.InventoryType.Tool).quantity;
+            if (quantity > 1)
+            {
+                toolQuantityText.text = quantity.ToString();
+            }
 
             return;
         }
@@ -84,7 +93,7 @@ public class UIManager : MonoBehaviour, ITimeTracker
         toolEquipSlot.gameObject.SetActive(false);
     }
 
-    void RenderInventoryPanel(ItemData[] slots, InventorySlot[] uiSlots)
+    void RenderInventoryPanel(ItemSlotData[] slots, InventorySlot[] uiSlots)
     {
         for(int i = 0; i< uiSlots.Length; i++)
         {

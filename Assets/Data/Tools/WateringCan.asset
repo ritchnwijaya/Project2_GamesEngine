@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 215cab0d17cc3448ba306a12ad8dd768, type: 3}
   m_Name: WateringCan
   m_EditorClassIdentifier: Assembly-CSharp::EquipmentData
-  description: 
-  thumbnail: {fileID: 0}
+  description: To water ur plants
+  thumbnail: {fileID: 21300000, guid: 458d0b887bd9e48139297fcaf4de8a86, type: 3}
   gameModel: {fileID: 0}
   toolType: 1

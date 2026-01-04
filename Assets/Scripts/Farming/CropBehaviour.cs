@@ -66,7 +66,7 @@ public class CropBehaviour : MonoBehaviour
         {
             SwitchState(CropState.Seedling);
         }
-        if(growth >= maxGrowth && cropState == CropState.Seedling)
+        if(growth >= maxGrowth && cropState != CropState.Harvestable)
         {
             SwitchState(CropState.Harvestable);
         }
@@ -84,10 +84,26 @@ public class CropBehaviour : MonoBehaviour
 
     void SwitchState(CropState stateToSwitch)
     {
-        seed.SetActive(false);
+
+    seed.SetActive(stateToSwitch == CropState.Seed);
+    wilted.SetActive(stateToSwitch == CropState.Wilted);
+    if (stateToSwitch == CropState.Seedling || stateToSwitch == CropState.Harvestable)
+    {
+        seedling.SetActive(true);
+    }
+    else
+    {
+        seedling.SetActive(false);
+    }
+
+    // Only show harvestable model when in Harvestable state
+    harvestable.SetActive(stateToSwitch == CropState.Harvestable);
+    
+        /* seed.SetActive(false);
         seedling.SetActive(false);
         harvestable.SetActive(false);
         wilted.SetActive(false);
+ */
 
         switch (stateToSwitch)
         {
