@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Land : MonoBehaviour, ITimeTracker
 {
+    public int id; 
     public enum LandStatus
     {
         Soil, Farmland, Watered
@@ -38,6 +39,33 @@ public class Land : MonoBehaviour, ITimeTracker
         TimeManager.Instance.RegisterTracker(this);
     }
 
+    public void LoadLandData(LandStatus statusToSwitch, GameTimeStamp lastWatered)
+    {
+        landStatus = statusToSwitch;
+        timeWatered = lastWatered;
+
+        Material materialToSwitch = soilMat;
+
+        //Decide what material to switch to
+        switch (statusToSwitch)
+        {
+            case LandStatus.Soil:
+                materialToSwitch = soilMat;
+                break;
+            case LandStatus.Farmland:
+                materialToSwitch = farmlandMat;
+                break;
+
+            case LandStatus.Watered:
+                materialToSwitch = wateredMat;
+                break;
+
+        }
+
+        //Get the renderer to apply the changes
+        renderer.material = materialToSwitch;
+    }
+
 
     public void SwitchLandStatus(LandStatus statusToSwitch)
     {
@@ -59,6 +87,8 @@ public class Land : MonoBehaviour, ITimeTracker
                 break;
         }
         renderer.material = materialToSwitch;
+
+        LandManager.Instance.OnLandStateChange(id, landStatus, timeWatered);
     }
 
     public void Select(bool toggle)
@@ -83,13 +113,16 @@ public class Land : MonoBehaviour, ITimeTracker
                     SwitchLandStatus(LandStatus.Farmland);
                     break;
                 case EquipmentData.ToolType.WateringCan:
-                    SwitchLandStatus(LandStatus.Watered);
+                    if (landStatus != LandStatus.Soil)
+                    {
+                        SwitchLandStatus(LandStatus.Watered);
+                    }
                     break;
 
                 case EquipmentData.ToolType.Shovel:
                     if(cropPlanted != null)
                     {
-                        Destroy(cropPlanted.gameObject);
+                        cropPlanted.RemoveCrop();
                     }
                     break;
             }
@@ -104,15 +137,22 @@ public class Land : MonoBehaviour, ITimeTracker
         // 3: There isn't already a crop that has been planted
         if(seedTool != null && landStatus != LandStatus.Soil && cropPlanted == null)
         {
-            GameObject cropObject = Instantiate(cropPrefab, transform);
-            // move crop object to top of land object
-            cropObject.transform.position = new Vector3(transform.position.x, 0, transform.position.z);
-
-            cropPlanted = cropObject.GetComponent<CropBehaviour>();
-            cropPlanted.Plant(seedTool);
+            SpawnCrop();
+            cropPlanted.Plant(id, seedTool);
             InventoryManager.Instance.ConsumeItem(InventoryManager.Instance.GetEquippedSlot(InventorySlot.InventoryType.Tool));
 
         }
+    }
+    public CropBehaviour SpawnCrop()
+    {
+        //Instantiate the crop object parented to the land
+        GameObject cropObject = Instantiate(cropPrefab, transform);
+        //Move the crop object to the top of the land gameobject
+        cropObject.transform.position = new Vector3(transform.position.x, 0.1f, transform.position.z);
+
+        //Access the CropBehaviour of the crop we're going to plant
+        cropPlanted = cropObject.GetComponent<CropBehaviour>();
+        return cropPlanted; 
     }
 
     public void ClockUpdate(GameTimeStamp timestamp)

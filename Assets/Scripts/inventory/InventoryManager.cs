@@ -20,6 +20,7 @@ public class InventoryManager : MonoBehaviour
         } 
     }
 
+    public ItemIndex itemIndex; 
     //tool slots
     [Header("Tools")]
     [SerializeField]
