@@ -187,4 +187,9 @@ public class Land : MonoBehaviour, ITimeTracker
         }
 
     }
+    private void OnDestroy()
+    {
+        //Unsubscribe from the list on destroy
+        TimeManager.Instance.UnregisterTracker(this);
+    }
 }

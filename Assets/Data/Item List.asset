@@ -12,4 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c58ff602156e640c4ab939e4bcb2463e, type: 3}
   m_Name: Item List
   m_EditorClassIdentifier: Assembly-CSharp::ItemIndex
-  items: []
+  items:
+  - {fileID: 11400000, guid: 7abf451c707ed4c989ee63fc2fd9b994, type: 2}
+  - {fileID: 11400000, guid: dc1300084fc554449a9d8b30d267341c, type: 2}
+  - {fileID: 11400000, guid: ab37982fd3fac4dd8aac8b76af82012a, type: 2}
+  - {fileID: 11400000, guid: 5fb38be88af0646f38966969405f9e7d, type: 2}
+  - {fileID: 11400000, guid: 8340686106b444a63bad572d6d094e20, type: 2}
+  - {fileID: 11400000, guid: 47a9fcd9001324fa3a6bf6785385d1ff, type: 2}
+  - {fileID: 11400000, guid: adef44772fc4a44a9a35ac698b509122, type: 2}
+  - {fileID: 11400000, guid: dd31df0b623ba4a42aba0eeaf1670e01, type: 2}
+  - {fileID: 11400000, guid: 79aab0c9890b6487089480ca933ff154, type: 2}
+  - {fileID: 11400000, guid: 208c0e8081f8041d6869c878272d6084, type: 2}
