@@ -28,6 +28,9 @@ public class UIManager : MonoBehaviour, ITimeTracker
     public Text itemNameText;
     public Text itemDescriptionText;
 
+    [Header("Yes No Prompt")]
+    public YesNoPrompt yesNoPrompt; 
+
     private void Awake()
     {
         if(Instance!=null && Instance!= this)
@@ -46,6 +49,13 @@ public class UIManager : MonoBehaviour, ITimeTracker
         AssignSlotIndexes();
         //add UIManager to the list of objects TimeManager will notify when time updates
         TimeManager.Instance.RegisterTracker(this);
+    }
+
+    public void TriggerPrompt(string message, System.Action onYesCallback)
+    {
+        yesNoPrompt.gameObject.SetActive(true);
+
+        yesNoPrompt.CreatePrompt(message, onYesCallback); 
     }
 
     //Iterate through the slot UI elements and assign it its reference slot index

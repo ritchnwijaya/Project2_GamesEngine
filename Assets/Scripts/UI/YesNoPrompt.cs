@@ -12,21 +12,17 @@ public class YesNoPrompt : MonoBehaviour
 
     public void CreatePrompt(string message, Action onYesSelected)
     {
-        //Set the action 
+
         this.onYesSelected = onYesSelected;
-        //Display the prompt
         promptText.text = message; 
     }
 
     public void Answer(bool yes)
     {
-        //Execute the action if yes is selected
         if (yes && onYesSelected != null)
         {
             onYesSelected();
         }
-
-        //Reset the action 
         onYesSelected = null;
 
         gameObject.SetActive(false); 

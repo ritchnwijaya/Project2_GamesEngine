@@ -27,7 +27,7 @@ public class SceneTransitionManager : MonoBehaviour
         SceneManager.sceneLoaded += OnLocationLoad;
 
         //Find the player's transform
-        playerPoint = UnityEngine.Object.FindFirstObjectByType<PlayerMovement>().transform;
+        playerPoint = FindFirstObjectByType<PlayerMovement>().transform;
     }
 
     public void SwitchLocation(Location locationToSwitch)

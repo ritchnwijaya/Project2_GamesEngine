@@ -74,4 +74,17 @@ public class GameStateManager : MonoBehaviour, ITimeTracker
                 });
             }
         }
+
+    public void Sleep()
+    {
+        //Calculate how many ticks we need to advance the time to 6am
+
+        //Get the time stamp of 6am the next day
+        GameTimeStamp timestampOfNextDay = TimeManager.Instance.GetGameTimeStamp();
+        timestampOfNextDay.day += 1;
+        timestampOfNextDay.hour = 6;
+        timestampOfNextDay.minute = 0;
+        Debug.Log(timestampOfNextDay.day + " " + timestampOfNextDay.hour + ":" + timestampOfNextDay.minute);
+        TimeManager.Instance.SkipTime(timestampOfNextDay);
+    }
 }
