@@ -28,6 +28,10 @@ public class UIManager : MonoBehaviour, ITimeTracker
     public Text itemNameText;
     public Text itemDescriptionText;
 
+    [Header("Screen Transitions")]
+    public GameObject fadeIn;
+    public GameObject fadeOut; 
+
     [Header("Yes No Prompt")]
     public YesNoPrompt yesNoPrompt; 
 
@@ -50,6 +54,28 @@ public class UIManager : MonoBehaviour, ITimeTracker
         //add UIManager to the list of objects TimeManager will notify when time updates
         TimeManager.Instance.RegisterTracker(this);
     }
+
+    public void FadeOutScreen()
+    {
+        fadeOut.SetActive(true);
+    }
+
+    public void FadeInScreen()
+    {
+        fadeIn.SetActive(true); 
+    }
+
+    public void OnFadeInComplete()
+    {
+        fadeIn.SetActive(false); 
+    }
+
+    public void ResetFadeDefaults()
+    {
+        fadeOut.SetActive(false);
+        fadeIn.SetActive(true);
+    }
+
 
     public void TriggerPrompt(string message, System.Action onYesCallback)
     {

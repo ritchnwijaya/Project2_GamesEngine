@@ -5310,6 +5310,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3980151027918367047, guid: 56112ba04727540b5959553c983b6c21, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3996877702689764107, guid: 56112ba04727540b5959553c983b6c21, type: 3}
       propertyPath: yesNoPrompt
       value: 

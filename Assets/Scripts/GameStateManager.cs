@@ -77,6 +77,13 @@ public class GameStateManager : MonoBehaviour, ITimeTracker
 
     public void Sleep()
     {
+        UIManager.Instance.FadeOutScreen();
+        screenFadedOut = false;
+        StartCoroutine(TransitionTime());
+    }
+
+    IEnumerator TransitionTime()
+    {
         //Calculate how many ticks we need to advance the time to 6am
 
         //Get the time stamp of 6am the next day
@@ -85,6 +92,21 @@ public class GameStateManager : MonoBehaviour, ITimeTracker
         timestampOfNextDay.hour = 6;
         timestampOfNextDay.minute = 0;
         Debug.Log(timestampOfNextDay.day + " " + timestampOfNextDay.hour + ":" + timestampOfNextDay.minute);
+        
+        while (!screenFadedOut)
+        {
+            yield return new WaitForSeconds(1f);
+        }
         TimeManager.Instance.SkipTime(timestampOfNextDay);
+        //Reset the boolean
+        screenFadedOut = false;
+        UIManager.Instance.ResetFadeDefaults();
+
+    }
+
+    public void OnFadeOutComplete()
+    {
+        screenFadedOut = true;
+
     }
 }
