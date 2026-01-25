@@ -8,14 +8,12 @@ public class InventoryManager : MonoBehaviour
 
     private void Awake()
     {
-        //if there is more than one instance, destroy the extra
         if(Instance!= null && Instance != this)
         {
             Destroy(this);
         }
         else
         {
-            //setting the static instance to this instance
             Instance = this;
         } 
     }
@@ -39,7 +37,15 @@ public class InventoryManager : MonoBehaviour
     //for player to hold item
     public Transform handPoint;
 
-    //Equipping
+    public void LoadInventory(ItemSlotData[] toolSlots, ItemSlotData equippedToolSlot, ItemSlotData[] itemSlots, ItemSlotData equippedItemSlot)
+    {
+        this.toolSlots = toolSlots;
+        this.equippedToolSlot = equippedToolSlot;
+        this.itemSlots = itemSlots;
+        this.equippedItemSlot = equippedItemSlot;
+        UIManager.Instance.RenderInventory();
+    }
+
 
     //Handles movement of item from Inventory to Hand
     public void InventoryToHand(int slotIndex, InventorySlot.InventoryType inventoryType)
@@ -113,39 +119,6 @@ public class InventoryManager : MonoBehaviour
             RenderHand();
         }
 
-        /* if(inventoryType == InventorySlot.InventoryType.Item)
-        {
-            //Iterate through each inventory slot and find an empty slot
-            for(int i = 0; i < itemSlots.Length; i++)
-            {
-                if(itemSlots[i] == null)
-                {
-                    //Send the equipped item over to its new slot
-                    itemSlots[i] = equippedItemSlot;
-                    //Remove the item from the hand
-                    equippedItemSlot = null;
-                    break;
-                }
-            }
-            RenderHand();
-
-        }
-        else
-        {
-            //Iterate through each inventory slot and find an empty slot
-            for(int i = 0; i < toolSlots.Length; i++)
-            {
-                if(toolSlots[i] == null)
-                {
-                    //Send the equipped item over to its new slot
-                    toolSlots[i] = equippedToolSlot;
-                    //Remove the item from the hand
-                    equippedToolSlot = null;
-                    break;
-                }
-            }
-
-        } */
         //Update changes in the inventory
         UIManager.Instance.RenderInventory();
     }

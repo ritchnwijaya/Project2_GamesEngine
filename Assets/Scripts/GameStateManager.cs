@@ -6,28 +6,23 @@ public class GameStateManager : MonoBehaviour, ITimeTracker
 {
     public static GameStateManager Instance { get; private set; }
 
-    //Check if the screen has finished fading out
     bool screenFadedOut;
 
 
     private void Awake()
     {
-        //If there is more than one instance, destroy the extra
         if (Instance != null && Instance != this)
         {
             Destroy(this);
         }
         else
         {
-            //Set the static instance to this instance
             Instance = this;
         }
     }
 
-    // Start is called before the first frame update
     void Start()
     {
-        //Add this to TimeManager's Listener list
         TimeManager.Instance.RegisterTracker(this); 
     }
 
@@ -98,6 +93,8 @@ public class GameStateManager : MonoBehaviour, ITimeTracker
             yield return new WaitForSeconds(1f);
         }
         TimeManager.Instance.SkipTime(timestampOfNextDay);
+        //Save
+        SaveManager.Save(ExportSaveState());
         //Reset the boolean
         screenFadedOut = false;
         UIManager.Instance.ResetFadeDefaults();
@@ -107,6 +104,48 @@ public class GameStateManager : MonoBehaviour, ITimeTracker
     public void OnFadeOutComplete()
     {
         screenFadedOut = true;
+
+    }
+
+    public GameSaveState ExportSaveState()
+    {
+        //Retrieve Farm Data 
+        List<LandSaveState> landData = LandManager.farmData.Item1;
+        List<CropSaveState> cropData = LandManager.farmData.Item2;
+
+        //Retrieve Inventory Data 
+        ItemSlotData[] toolSlots = InventoryManager.Instance.GetInventorySlots(InventorySlot.InventoryType.Tool);
+        ItemSlotData[] itemSlots = InventoryManager.Instance.GetInventorySlots(InventorySlot.InventoryType.Item);
+
+        ItemSlotData equippedToolSlot = InventoryManager.Instance.GetEquippedSlot(InventorySlot.InventoryType.Tool);
+        ItemSlotData equippedItemSlot = InventoryManager.Instance.GetEquippedSlot(InventorySlot.InventoryType.Item);
+
+        //Time
+        GameTimeStamp timestamp = TimeManager.Instance.GetGameTimeStamp();
+        return new GameSaveState(landData, cropData, toolSlots, itemSlots, equippedItemSlot, equippedToolSlot, timestamp);
+    }
+
+    public void LoadSave()
+    {
+        //Set the scene to the player's house
+        SceneTransitionManager.Instance.SwitchLocation(SceneTransitionManager.Location.Home);
+        //Retrieve the loaded save
+        GameSaveState save = SaveManager.Load();
+        //Load up the parts
+
+        //Time
+        TimeManager.Instance.LoadTime(save.timestamp);
+
+        //Inventory
+        ItemSlotData[] toolSlots = ItemSlotData.DeserializeArray(save.toolSlots);
+        ItemSlotData equippedToolSlot = ItemSlotData.DeserializeData(save.equippedToolSlot);
+        ItemSlotData[] itemSlots = ItemSlotData.DeserializeArray(save.itemSlots);
+        ItemSlotData equippedItemSlot = ItemSlotData.DeserializeData(save.equippedItemSlot);
+        InventoryManager.Instance.LoadInventory(toolSlots, equippedToolSlot, itemSlots, equippedItemSlot);
+
+        //Farming data 
+        LandManager.farmData = new System.Tuple<List<LandSaveState>, List<CropSaveState>>(save.landData, save.cropData);
+
 
     }
 }
