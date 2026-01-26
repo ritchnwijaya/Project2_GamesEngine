@@ -10,6 +10,8 @@ public class PlayerMovement : MonoBehaviour
 
     PlayerInteraction playerInteraction;
     private Animator animator;
+    private float gravity = 9.81f;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -58,6 +60,12 @@ public class PlayerMovement : MonoBehaviour
         Vector3 dir = new Vector3(directionX, 0f, directionY).normalized;
         Vector3 velocity = playerSpeed * Time.deltaTime * dir;
 
+        if (controller.isGrounded)
+        {
+            velocity.y = 0; 
+        }
+        velocity.y -= Time.deltaTime * gravity; 
+
         if(dir.magnitude >= 0.1f)
         {
             Quaternion targetRotation = Quaternion.LookRotation(dir);
@@ -72,7 +80,5 @@ public class PlayerMovement : MonoBehaviour
 
         controller.Move(velocity);
 
-        
-        
     }
 }

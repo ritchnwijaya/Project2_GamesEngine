@@ -13,6 +13,7 @@ public class TimeManager : MonoBehaviour
 
     [Header ("Day and Night cycle")]
     public Transform sunTransform;  
+    private float indoorAngle = 40; 
 
     // list of objects to inform of changes to the time
     List< ITimeTracker> listeners = new List<ITimeTracker>();
@@ -86,6 +87,13 @@ public class TimeManager : MonoBehaviour
 // day and night cycle
     void UpdateSunMovement()
     {
+        //Disable Day and Night cycle if indoors
+        if (SceneTransitionManager.Instance.CurrentlyIndoor())
+        {
+            sunTransform.eulerAngles = new Vector3(indoorAngle, 0, 0);
+            return; 
+        }
+        
         int timeInMinutes = GameTimeStamp.HoursToMinutes(timestamp.hour) + timestamp.minute;
 
         // sun moves 15 degrees in an hour
