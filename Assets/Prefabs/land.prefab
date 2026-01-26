@@ -225,5 +225,5 @@ MonoBehaviour:
   cropPrefab: {fileID: 759402939822021812, guid: 4ecf5a039f2cd462e9eab1e9d093559b, type: 3}
   obstacleStatus: 0
   rockPrefab: {fileID: 2237128906197810352, guid: a44d29ad6dea848f1a0405716593ed69, type: 3}
-  woodPrefab: {fileID: 6939947790812607992, guid: 1868d24a503de4faf918115a84f8d34a, type: 3}
+  woodPrefab: {fileID: 7876410061340176847, guid: 6864f56ffa9524ff1969e5550d9e65c9, type: 3}
   weedsPrefab: {fileID: 6243354285516468398, guid: 4997a0de29e3643f2b410ea60de30a2d, type: 3}
