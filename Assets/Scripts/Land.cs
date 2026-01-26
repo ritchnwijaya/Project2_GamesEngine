@@ -48,15 +48,15 @@ public class Land : MonoBehaviour, ITimeTracker
 
     }
 
-    public void LoadLandData(LandStatus statusToSwitch, GameTimeStamp lastWatered)
+    public void LoadLandData(LandStatus landStatusToSwitch, GameTimeStamp lastWatered, FarmObstacleStatus obstacleStatusToSwitch)
     {
-        landStatus = statusToSwitch;
+        landStatus = landStatusToSwitch;
         timeWatered = lastWatered;
 
         Material materialToSwitch = soilMat;
 
         //Decide what material to switch to
-        switch (statusToSwitch)
+        switch (landStatusToSwitch)
         {
             case LandStatus.Soil:
                 materialToSwitch = soilMat;
@@ -73,6 +73,32 @@ public class Land : MonoBehaviour, ITimeTracker
 
         //Get the renderer to apply the changes
         renderer.material = materialToSwitch;
+
+        float yOffset = 0.1f;
+        switch (obstacleStatusToSwitch)
+        {
+            case FarmObstacleStatus.None:
+            //Destroy the Obstacle object, if any
+                if (obstacleObject != null) Destroy(obstacleObject); 
+                break;
+            case FarmObstacleStatus.Rock:
+                obstacleObject = Instantiate(rockPrefab, transform); 
+                yOffset = 0.79f;
+                break;
+            case FarmObstacleStatus.Wood:
+                obstacleObject = Instantiate(woodPrefab, transform);
+                yOffset = 1.6f;
+                break;
+            case FarmObstacleStatus.Weeds:
+                obstacleObject = Instantiate(weedsPrefab, transform);
+                yOffset = 0.54f;
+                break; 
+        }
+        //Move the obstacle object to the top of the land gameobject
+        if (obstacleObject != null) obstacleObject.transform.position = new Vector3(transform.position.x, yOffset, transform.position.z);
+
+        //Set the status accordingly
+        obstacleStatus = obstacleStatusToSwitch;
     }
 
 
@@ -97,7 +123,7 @@ public class Land : MonoBehaviour, ITimeTracker
         }
         renderer.material = materialToSwitch;
 
-        LandManager.Instance.OnLandStateChange(id, landStatus, timeWatered);
+        LandManager.Instance.OnLandStateChange(id, landStatus, timeWatered, obstacleStatus);
     }
 
     public void SetObstacleStatus(FarmObstacleStatus statusToSwitch)
@@ -128,7 +154,7 @@ public class Land : MonoBehaviour, ITimeTracker
 
         obstacleStatus = statusToSwitch;
 
-        LandManager.Instance.OnLandStateChange(id, landStatus, timeWatered);
+        LandManager.Instance.OnLandStateChange(id, landStatus, timeWatered,obstacleStatus);
     }
 
     public void Select(bool toggle)

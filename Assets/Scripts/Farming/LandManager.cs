@@ -87,9 +87,9 @@ public class LandManager : MonoBehaviour
 
     #region State Changes
     // update land status
-    public void OnLandStateChange(int id, Land.LandStatus landStatus, GameTimeStamp lastWatered)
+    public void OnLandStateChange(int id, Land.LandStatus landStatus, GameTimeStamp lastWatered,Land.FarmObstacleStatus obstacleStatus)
     {
-        landData[id] = new LandSaveState(landStatus, lastWatered);
+        landData[id] = new LandSaveState(landStatus, lastWatered,obstacleStatus);
     }
 
     public void OnCropStateChange(int landID, CropBehaviour.CropState cropState, int growth, int health)
@@ -111,7 +111,7 @@ public class LandManager : MonoBehaviour
             //Get the individual land save state
             LandSaveState landDataToLoad = landDatasetToLoad[i];
             //Load it up onto the Land instance
-            landPlots[i].LoadLandData(landDataToLoad.landStatus, landDataToLoad.lastWatered);
+            landPlots[i].LoadLandData(landDataToLoad.landStatus, landDataToLoad.lastWatered,landDataToLoad.obstacleStatus);
             
         }
 

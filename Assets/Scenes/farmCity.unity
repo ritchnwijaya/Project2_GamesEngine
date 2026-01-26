@@ -7471,6 +7471,63 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4396486759537677759, guid: ff8f9dc6f477d2b46a040718737bb4cf, type: 3}
+--- !u!1001 &1513976519
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 221285723343052951, guid: 56112ba04727540b5959553c983b6c21, type: 3}
+      propertyPath: m_Name
+      value: Essentials
+      objectReference: {fileID: 0}
+    - target: {fileID: 3177270308712835886, guid: 56112ba04727540b5959553c983b6c21, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 16.813326
+      objectReference: {fileID: 0}
+    - target: {fileID: 3177270308712835886, guid: 56112ba04727540b5959553c983b6c21, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.48999596
+      objectReference: {fileID: 0}
+    - target: {fileID: 3177270308712835886, guid: 56112ba04727540b5959553c983b6c21, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 15.482645
+      objectReference: {fileID: 0}
+    - target: {fileID: 3177270308712835886, guid: 56112ba04727540b5959553c983b6c21, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3177270308712835886, guid: 56112ba04727540b5959553c983b6c21, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3177270308712835886, guid: 56112ba04727540b5959553c983b6c21, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3177270308712835886, guid: 56112ba04727540b5959553c983b6c21, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3177270308712835886, guid: 56112ba04727540b5959553c983b6c21, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3177270308712835886, guid: 56112ba04727540b5959553c983b6c21, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3177270308712835886, guid: 56112ba04727540b5959553c983b6c21, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 56112ba04727540b5959553c983b6c21, type: 3}
 --- !u!1 &1515643247 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 428424251291994218, guid: ff8f9dc6f477d2b46a040718737bb4cf, type: 3}
@@ -9863,6 +9920,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: FarmerGirl
       objectReference: {fileID: 0}
+    - target: {fileID: 4581937153851128857, guid: f168c51a3e8664906b26f886c606e17c, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7340099795196198694, guid: f168c51a3e8664906b26f886c606e17c, type: 3}
       propertyPath: m_LocalPosition.x
       value: 29.584517
@@ -9920,3 +9981,4 @@ SceneRoots:
   - {fileID: 409905565}
   - {fileID: 4241604545844880598}
   - {fileID: 1244418055}
+  - {fileID: 1513976519}
