@@ -46,7 +46,6 @@ public class Land : MonoBehaviour, ITimeTracker
         // add this to TimeManager listener list
         TimeManager.Instance.RegisterTracker(this);
 
-        SetObstacleStatus(FarmObstacleStatus.Rock);
     }
 
     public void LoadLandData(LandStatus statusToSwitch, GameTimeStamp lastWatered)
@@ -103,6 +102,7 @@ public class Land : MonoBehaviour, ITimeTracker
 
     public void SetObstacleStatus(FarmObstacleStatus statusToSwitch)
     {
+        float yOffset = 0.1f;
         switch (statusToSwitch)
         {
             case FarmObstacleStatus.None:
@@ -111,17 +111,20 @@ public class Land : MonoBehaviour, ITimeTracker
                 break;
             case FarmObstacleStatus.Rock:
                 obstacleObject = Instantiate(rockPrefab, transform); 
+                yOffset = 0.79f;
                 break;
             case FarmObstacleStatus.Wood:
                 obstacleObject = Instantiate(woodPrefab, transform);
+                yOffset = 1.6f;
                 break;
             case FarmObstacleStatus.Weeds:
                 obstacleObject = Instantiate(weedsPrefab, transform);
+                yOffset = 0.54f;
                 break; 
         }
 
         //Move the obstacle object to the top of the land gameobject
-        if(obstacleObject != null) obstacleObject.transform.position = new Vector3(transform.position.x, 0.1f, transform.position.z);
+        if(obstacleObject != null) obstacleObject.transform.position = new Vector3(transform.position.x, yOffset, transform.position.z);
 
         obstacleStatus = statusToSwitch;
 
