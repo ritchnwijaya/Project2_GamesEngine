@@ -32,8 +32,6 @@ public class GameStateManager : MonoBehaviour, ITimeTracker
             if(SceneTransitionManager.Instance.currentLocation != SceneTransitionManager.Location.farmCity)
             {
 
-                //If there is nothing to update to begin with, stop 
-                if (LandManager.farmData == null) return;
 
                 //Retrieve the Land and Farm data from the static variable
                 List<LandSaveState> landData = LandManager.farmData.Item1;
