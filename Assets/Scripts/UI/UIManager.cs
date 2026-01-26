@@ -35,6 +35,9 @@ public class UIManager : MonoBehaviour, ITimeTracker
     [Header("Yes No Prompt")]
     public YesNoPrompt yesNoPrompt; 
 
+    [Header("Player Stats")]
+    public Text moneyText;
+
     private void Awake()
     {
         if(Instance!=null && Instance!= this)
@@ -51,6 +54,7 @@ public class UIManager : MonoBehaviour, ITimeTracker
     {
         RenderInventory();
         AssignSlotIndexes();
+        RenderPlayerStats();
         //add UIManager to the list of objects TimeManager will notify when time updates
         TimeManager.Instance.RegisterTracker(this);
     }
@@ -182,8 +186,11 @@ public class UIManager : MonoBehaviour, ITimeTracker
         string dayOfTheWeek = timestamp.GetDayOfTheWeek().ToString();
 
         dateText.text = season + " " + day + " (" + dayOfTheWeek + ")";
+    }
 
-
+    public void RenderPlayerStats()
+    {
+        moneyText.text = PlayerStats.Money + PlayerStats.CURRENCY; 
     }
     
 

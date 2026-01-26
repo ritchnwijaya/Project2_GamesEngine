@@ -111,13 +111,6 @@ public class PlayerInteraction : MonoBehaviour
 
     public void ItemInteract()
     {
-        //if the player is holding sth, keep it in inventory
-        if(InventoryManager.Instance.SlotEquipped(InventorySlot.InventoryType.Item))
-        {
-            InventoryManager.Instance.HandToInventory(InventorySlot.InventoryType.Item);
-            return;
-        }
-
         // if the player isn't holding anything, pick up an item
 
         //check if there is an interactable selected
@@ -128,6 +121,16 @@ public class PlayerInteraction : MonoBehaviour
         }
 
 
+    }
+
+    public void ItemKeep()
+    {
+        //If the player is holding something, keep it in his inventory
+        if (InventoryManager.Instance.SlotEquipped(InventorySlot.InventoryType.Item))
+        {
+            InventoryManager.Instance.HandToInventory(InventorySlot.InventoryType.Item);
+            return;
+        }
     }
 
 }

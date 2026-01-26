@@ -27,50 +27,61 @@ public class GameStateManager : MonoBehaviour, ITimeTracker
     }
 
     public void ClockUpdate(GameTimeStamp timestamp)
+    {
+        UpdateShippingState(timestamp);
+        UpdateFarmState(timestamp);  
+    }
+
+    void UpdateShippingState(GameTimeStamp timestamp)
+    {
+        if(timestamp.hour == ShippingBin.hourToShip && timestamp.minute == 0)
         {
-            //Update the Land and Crop Save states as long as the player is outside of the Farm scene
-            if(SceneTransitionManager.Instance.currentLocation != SceneTransitionManager.Location.farmCity)
+            ShippingBin.ShipItems();
+        }
+    }
+
+    void UpdateFarmState(GameTimeStamp timestamp)
+    {
+        //Update the Land and Crop Save states as long as the player is outside of the Farm scene
+        if (SceneTransitionManager.Instance.currentLocation != SceneTransitionManager.Location.farmCity)
+        {
+            if (LandManager.farmData == null) return;
+
+            //Retrieve the Land and Farm data from the static variable
+            List<LandSaveState> landData = LandManager.farmData.Item1;
+            List<CropSaveState> cropData = LandManager.farmData.Item2;
+
+            if (cropData.Count == 0) return;
+
+            for (int i = 0; i < cropData.Count; i++)
             {
+                CropSaveState crop = cropData[i];
+                LandSaveState land = landData[crop.landID];
 
+                //Check if the crop is already wilted
+                if (crop.cropState == CropBehaviour.CropState.Wilted) continue;
 
-                //Retrieve the Land and Farm data from the static variable
-                List<LandSaveState> landData = LandManager.farmData.Item1;
-                List<CropSaveState> cropData = LandManager.farmData.Item2;
-
-                //If there are no crops planted, we don't need to worry about updating anything
-                if (cropData.Count == 0) return;
-
-                for (int i = 0; i < cropData.Count; i++)
+                //Update the Land's and crop's state
+                land.ClockUpdate(timestamp);
+                if (land.landStatus == Land.LandStatus.Watered)
                 {
-                    //Get the crop and corresponding land data
-                    CropSaveState crop = cropData[i];
-                    LandSaveState land = landData[crop.landID];
-
-                    //Check if the crop is already wilted
-                    if (crop.cropState == CropBehaviour.CropState.Wilted) continue;
-
-                    //Update the Land's state
-                    land.ClockUpdate(timestamp); 
-                    //Update the crop's state based on the land state
-                    if(land.landStatus == Land.LandStatus.Watered)
-                    {
-                        crop.Grow(); 
-                    } else if(crop.cropState != CropBehaviour.CropState.Seed)
-                    {
-                        crop.Wither(); 
-                    }
-
-                    //Update the element in the array
-                    cropData[i] = crop;
-                    landData[crop.landID] = land; 
-
+                    crop.Grow();
+                }
+                else if (crop.cropState != CropBehaviour.CropState.Seed)
+                {
+                    crop.Wither();
                 }
 
-                LandManager.farmData.Item2.ForEach((CropSaveState crop) => {
-                    Debug.Log(crop.seedToGrow + "\n Health: " + crop.health + "\n Growth: " + crop.growth + "\n State: " + crop.cropState.ToString());
-                });
+                cropData[i] = crop;
+                landData[crop.landID] = land;
+
             }
+
+            LandManager.farmData.Item2.ForEach((CropSaveState crop) => {
+                Debug.Log(crop.seedToGrow + "\n Health: " + crop.health + "\n Growth: " + crop.growth + "\n State: " + crop.cropState.ToString());
+            });
         }
+    }
 
     public void Sleep()
     {
@@ -124,7 +135,7 @@ public class GameStateManager : MonoBehaviour, ITimeTracker
 
         //Time
         GameTimeStamp timestamp = TimeManager.Instance.GetGameTimeStamp();
-        return new GameSaveState(landData, cropData, toolSlots, itemSlots, equippedItemSlot, equippedToolSlot, timestamp);
+        return new GameSaveState(landData, cropData, toolSlots, itemSlots, equippedItemSlot, equippedToolSlot, timestamp, PlayerStats.Money);
     }
 
     public void LoadSave()
@@ -145,6 +156,9 @@ public class GameStateManager : MonoBehaviour, ITimeTracker
 
         //Farming data 
         LandManager.farmData = new System.Tuple<List<LandSaveState>, List<CropSaveState>>(save.landData, save.cropData);
+
+        PlayerStats.LoadStats(save.money);
+
 
 
     }

@@ -57,6 +57,12 @@ public class PlayerMovement : MonoBehaviour
 
             playerInteraction.ItemInteract();
         }
+
+        //Keep items 
+        if (Input.GetButtonDown("Fire3"))
+        {
+            playerInteraction.ItemKeep();
+        }
     }
 
     public void Move()

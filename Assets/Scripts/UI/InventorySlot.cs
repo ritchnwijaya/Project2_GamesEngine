@@ -47,7 +47,7 @@ public class InventorySlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        throw new System.NotImplementedException(null);
+        UIManager.Instance.DisplayItemInfo(null);
     }
 
     public virtual void OnPointerClick(PointerEventData eventData)
