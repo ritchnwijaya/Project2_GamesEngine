@@ -3541,6 +3541,11 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -4383061716953438942, guid: ff8f9dc6f477d2b46a040718737bb4cf, type: 3}
+--- !u!4 &312534552 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1374731969193205527, guid: f168c51a3e8664906b26f886c606e17c, type: 3}
+  m_PrefabInstance: {fileID: 4241604545844880598}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &313304374 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -2692977505264052593, guid: ff8f9dc6f477d2b46a040718737bb4cf, type: 3}
@@ -7483,6 +7488,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Essentials
       objectReference: {fileID: 0}
+    - target: {fileID: 221285723343052951, guid: 56112ba04727540b5959553c983b6c21, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3177270308712835886, guid: 56112ba04727540b5959553c983b6c21, type: 3}
       propertyPath: m_LocalPosition.x
       value: 16.813326
@@ -9924,6 +9933,18 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6005678118276170817, guid: f168c51a3e8664906b26f886c606e17c, type: 3}
+      propertyPath: handPoint
+      value: 
+      objectReference: {fileID: 312534552}
+    - target: {fileID: 6005678118276170817, guid: f168c51a3e8664906b26f886c606e17c, type: 3}
+      propertyPath: itemSlots.Array.data[1].itemData
+      value: 
+      objectReference: {fileID: 11400000, guid: adef44772fc4a44a9a35ac698b509122, type: 2}
+    - target: {fileID: 6005678118276170817, guid: f168c51a3e8664906b26f886c606e17c, type: 3}
+      propertyPath: itemSlots.Array.data[1].quantity
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7340099795196198694, guid: f168c51a3e8664906b26f886c606e17c, type: 3}
       propertyPath: m_LocalPosition.x
       value: 29.584517
@@ -9963,6 +9984,18 @@ PrefabInstance:
     - target: {fileID: 7340099795196198694, guid: f168c51a3e8664906b26f886c606e17c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8256925690104488997, guid: f168c51a3e8664906b26f886c606e17c, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8256925690104488997, guid: f168c51a3e8664906b26f886c606e17c, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8256925690104488997, guid: f168c51a3e8664906b26f886c606e17c, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
