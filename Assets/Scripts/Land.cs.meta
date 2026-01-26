@@ -1,2 +1,19 @@
 fileFormatVersion: 2
 guid: 598f1dab7bc88494988c7cdd51aa5ce0
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - soilMat: {instanceID: 0}
+  - farmlandMat: {instanceID: 0}
+  - wateredMat: {instanceID: 0}
+  - select: {instanceID: 0}
+  - cropPrefab: {instanceID: 0}
+  - rockPrefab: {instanceID: 0}
+  - woodPrefab: {instanceID: 0}
+  - weedsPrefab: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -31,6 +31,10 @@ public class GameStateManager : MonoBehaviour, ITimeTracker
             //Update the Land and Crop Save states as long as the player is outside of the Farm scene
             if(SceneTransitionManager.Instance.currentLocation != SceneTransitionManager.Location.farmCity)
             {
+
+                //If there is nothing to update to begin with, stop 
+                if (LandManager.farmData == null) return;
+
                 //Retrieve the Land and Farm data from the static variable
                 List<LandSaveState> landData = LandManager.farmData.Item1;
                 List<CropSaveState> cropData = LandManager.farmData.Item2;
@@ -127,8 +131,6 @@ public class GameStateManager : MonoBehaviour, ITimeTracker
 
     public void LoadSave()
     {
-        //Set the scene to the player's house
-        SceneTransitionManager.Instance.SwitchLocation(SceneTransitionManager.Location.Home);
         //Retrieve the loaded save
         GameSaveState save = SaveManager.Load();
         //Load up the parts

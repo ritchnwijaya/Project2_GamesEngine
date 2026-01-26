@@ -25,4 +25,10 @@ public class SaveManager : MonoBehaviour
 
         return loadedSave; 
     }
+
+    //Returns true if there is a save file
+    public static bool HasSave()
+    {
+        return File.Exists(FILEPATH); 
+    }
 }

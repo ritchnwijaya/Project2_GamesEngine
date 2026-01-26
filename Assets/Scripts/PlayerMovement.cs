@@ -8,6 +8,10 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float playerSpeed = 5f;
     [SerializeField] float sprintMultiplier = 1.6f;
 
+    [Header("Gravity")]
+    [SerializeField] float gravity = -9.81f;
+    private float verticalVelocity;
+
     [Header("References")]
     [SerializeField] Transform model; // Model-Child hier reinziehen
 
@@ -20,6 +24,10 @@ public class PlayerMovement : MonoBehaviour
         controller = GetComponent<CharacterController>();
         animator = GetComponentInChildren<Animator>();
         playerInteraction = GetComponentInChildren<PlayerInteraction>();
+
+        // Safety: falls du vergisst es im Inspector zu setzen
+        if (model == null && animator != null)
+            model = animator.transform;
     }
 
     void Update()
@@ -28,18 +36,14 @@ public class PlayerMovement : MonoBehaviour
         Interact();
 
         if (Input.GetKey(KeyCode.RightBracket))
-        {
             TimeManager.Instance.Tick();
-        }
     }
 
     public void Interact()
     {
         if (Input.GetButtonDown("Fire1"))
         {
-            if (animator != null)
-                animator.SetTrigger("Harvest");
-
+            if (animator != null) animator.SetTrigger("Harvest");
             playerInteraction.Interact();
         }
 
@@ -62,23 +66,31 @@ public class PlayerMovement : MonoBehaviour
 
         Vector3 dir = new Vector3(directionX, 0f, directionY).normalized;
 
-        // 👉 Rotation NUR auf dem Model
-        if (dir.magnitude >= 0.1f)
+        // Gravity (CharacterController braucht das manuell)
+        if (controller.isGrounded && verticalVelocity < 0f)
+            verticalVelocity = -2f; // kleiner Downforce, damit er am Boden bleibt
+
+        verticalVelocity += gravity * Time.deltaTime;
+
+        // Rotation nur am Model (verhindert "springen")
+        if (dir.magnitude >= 0.1f && model != null)
         {
             Quaternion targetRotation = Quaternion.LookRotation(dir);
-            model.rotation = Quaternion.Slerp(
-                model.rotation,
-                targetRotation,
-                Time.deltaTime * 10f
-            );
+            model.rotation = Quaternion.Slerp(model.rotation, targetRotation, Time.deltaTime * 10f);
         }
 
+        // Sprint / Speed
         bool sprint = Input.GetKey(KeyCode.LeftShift);
         float currentSpeed = playerSpeed * (sprint ? sprintMultiplier : 1f);
 
-        Vector3 velocity = currentSpeed * Time.deltaTime * dir;
-        controller.Move(velocity);
+        // Move
+        Vector3 move = dir * currentSpeed;
+        move.y = verticalVelocity;
 
-        animator.SetFloat("Speed", dir.magnitude * (sprint ? 1f : 0.5f));
+        controller.Move(move * Time.deltaTime);
+
+        // Animator Speed (Idle/Walk/Run)
+        if (animator != null)
+            animator.SetFloat("Speed", dir.magnitude * (sprint ? 1f : 0.5f));
     }
 }

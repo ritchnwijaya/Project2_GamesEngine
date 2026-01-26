@@ -88,6 +88,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &5085287205246857854
 GameObject:
@@ -180,6 +181,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!65 &4537667670743984979
 BoxCollider:
@@ -214,9 +216,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 598f1dab7bc88494988c7cdd51aa5ce0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Land
+  id: 0
   landStatus: 0
   soilMat: {fileID: 2100000, guid: f48f6f353d7f64934a47dd0fac762e6a, type: 2}
   farmlandMat: {fileID: 2100000, guid: a7d32726f5a81477289603c4f3a19d9c, type: 2}
   wateredMat: {fileID: 2100000, guid: 01bec8f6331c748f9b4cfce6ddf54ac0, type: 2}
   select: {fileID: 71308643202131597}
   cropPrefab: {fileID: 759402939822021812, guid: 4ecf5a039f2cd462e9eab1e9d093559b, type: 3}
+  obstacleStatus: 0
+  rockPrefab: {fileID: 2237128906197810352, guid: a44d29ad6dea848f1a0405716593ed69, type: 3}
+  woodPrefab: {fileID: 7876410061340176847, guid: 6864f56ffa9524ff1969e5550d9e65c9, type: 3}
+  weedsPrefab: {fileID: 6243354285516468398, guid: 4997a0de29e3643f2b410ea60de30a2d, type: 3}

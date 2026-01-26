@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -8,8 +9,11 @@ public class SceneTransitionManager : MonoBehaviour
 {
     public static SceneTransitionManager Instance;
 
-    public enum Location { farmCity, Home}
+    public enum Location { farmCity,Home}
     public Location currentLocation;
+    //List of all the places that are to be considered indoor
+    static readonly Location[] indoor = { Location.Home };
+
     Transform playerPoint;
     bool screenFadedOut;
 
@@ -29,6 +33,11 @@ public class SceneTransitionManager : MonoBehaviour
 
         //Find the player's transform
         playerPoint = FindFirstObjectByType<PlayerMovement>().transform;
+    }
+
+    public bool CurrentlyIndoor()
+    {
+        return indoor.Contains(currentLocation); 
     }
 
     public void SwitchLocation(Location locationToSwitch)
