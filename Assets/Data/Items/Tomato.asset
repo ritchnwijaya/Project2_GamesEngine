@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ItemData
   description: Technically a fruit
   thumbnail: {fileID: -886675868, guid: 61bbc5f77488e4a32b4172ad4b0f8689, type: 3}
-  gameModel: {fileID: 4107486585739814537, guid: 327253dec8f4b834db84f5a2c0098d6c, type: 3}
+  gameModel: {fileID: 6151440045950673346, guid: 1bc80651791bc46f194e88d7e9a4e280, type: 3}
