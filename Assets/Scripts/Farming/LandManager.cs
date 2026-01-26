@@ -3,16 +3,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(ObstacleGenerator))]
 public class LandManager : MonoBehaviour
 {
     public static LandManager Instance { get; private set; } 
     public static Tuple<List<LandSaveState>, List<CropSaveState>> farmData = null; 
 
-    List<Land> landPlots = new List<Land>();
+    List<Land> landPlots = new();
 
     // save states
-    List<LandSaveState> landData = new List<LandSaveState>();
-    List<CropSaveState> cropData = new List<CropSaveState>(); 
+    List<LandSaveState> landData = new();
+    List<CropSaveState> cropData = new(); 
 
     private void Awake()
     {
@@ -44,6 +45,10 @@ public class LandManager : MonoBehaviour
             //Load in any saved data 
             ImportLandData(farmData.Item1);
             ImportCropData(farmData.Item2);           
+        }else
+        {
+            //New Game
+            GetComponent<ObstacleGenerator>().GenerateObstacles(landPlots); 
         }
     }
 
