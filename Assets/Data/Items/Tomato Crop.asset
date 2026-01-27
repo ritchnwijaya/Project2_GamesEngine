@@ -15,3 +15,4 @@ MonoBehaviour:
   description: The crop the player will harvest first
   thumbnail: {fileID: 0}
   gameModel: {fileID: 5176926539354887203, guid: b225bd859a132420c85c9e84349a2832, type: 3}
+  cost: 100

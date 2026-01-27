@@ -15,6 +15,9 @@ MonoBehaviour:
   description: Seeds to grow cabbages
   thumbnail: {fileID: -1438090721, guid: 9eb406832929a43cf88eb5d02ecd9a57, type: 3}
   gameModel: {fileID: 0}
+  cost: 100
   daysToGrow: 3
   cropToYield: {fileID: 11400000, guid: dc1300084fc554449a9d8b30d267341c, type: 2}
   seedling: {fileID: 2061090473712859506, guid: 8c50d3e938d614e529e8f07da4065e58, type: 3}
+  regrowable: 0
+  daysToRegrow: 0
