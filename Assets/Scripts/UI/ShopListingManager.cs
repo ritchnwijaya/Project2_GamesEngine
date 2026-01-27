@@ -19,6 +19,7 @@ public class ShopListingManager : MonoBehaviour
     [Header("Confirmation Screen")]
     public GameObject confirmationScreen;
     public Text confirmationPrompt;
+    public Image confirmationIcon;
     public Text quantityText;
     public TextMeshProUGUI costCalculationText;
     public Button purchaseButton;  
@@ -54,6 +55,7 @@ public class ShopListingManager : MonoBehaviour
     public void RenderConfirmationScreen()
     {
         confirmationScreen.SetActive(true); 
+        confirmationIcon.sprite = itemToBuy.thumbnail;
         confirmationPrompt.text = $"Buy {itemToBuy.name}?";
 
         quantityText.text = "x" + quantity;
