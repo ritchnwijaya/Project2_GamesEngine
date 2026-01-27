@@ -25,6 +25,8 @@ public class UIManager : MonoBehaviour, ITimeTracker
     public InventorySlot[] toolSlots;
     public InventorySlot[] itemSlots;
 
+    [Header("Item info box")]
+    public GameObject itemInfoBox; 
     public Text itemNameText;
     public Text itemDescriptionText;
 
@@ -37,6 +39,9 @@ public class UIManager : MonoBehaviour, ITimeTracker
 
     [Header("Player Stats")]
     public Text moneyText;
+
+    [Header("Shop")]
+    public ShopListingManager shopListingManager; 
 
     private void Awake()
     {
@@ -55,6 +60,7 @@ public class UIManager : MonoBehaviour, ITimeTracker
         RenderInventory();
         AssignSlotIndexes();
         RenderPlayerStats();
+        DisplayItemInfo(null);
         //add UIManager to the list of objects TimeManager will notify when time updates
         TimeManager.Instance.RegisterTracker(this);
     }
@@ -155,9 +161,11 @@ public class UIManager : MonoBehaviour, ITimeTracker
         {
             itemNameText.text = "";
             itemDescriptionText.text = "";
+            itemInfoBox.SetActive(false); 
             return;
             
         }
+        itemInfoBox.SetActive(true); 
         itemNameText.text = data.name;
         itemDescriptionText.text = data.description;
     }
@@ -193,5 +201,9 @@ public class UIManager : MonoBehaviour, ITimeTracker
         moneyText.text = PlayerStats.Money + PlayerStats.CURRENCY; 
     }
     
-
+    public void OpenShop(List<ItemData> shopItems)
+    {
+        shopListingManager.gameObject.SetActive(true);
+        shopListingManager.RenderShop(shopItems); 
+    }
 }
