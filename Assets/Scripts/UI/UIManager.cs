@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class UIManager : MonoBehaviour, ITimeTracker 
 {
@@ -27,8 +28,8 @@ public class UIManager : MonoBehaviour, ITimeTracker
 
     [Header("Item info box")]
     public GameObject itemInfoBox; 
-    public Text itemNameText;
-    public Text itemDescriptionText;
+    public TextMeshProUGUI itemNameText; 
+    public TextMeshProUGUI itemDescriptionText;
 
     [Header("Screen Transitions")]
     public GameObject fadeIn;

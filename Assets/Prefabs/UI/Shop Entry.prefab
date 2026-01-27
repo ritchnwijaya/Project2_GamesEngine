@@ -228,6 +228,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43bc13f7e7d20473b98a2abefb116442, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::NewMonoBehaviourScript
+  itemThumbnail: {fileID: 6942596475839142312}
+  nameText: {fileID: 29049402413218536}
+  costText: {fileID: 2095533089249588990}
 --- !u!1 &4554932243274625089
 GameObject:
   m_ObjectHideFlags: 0
