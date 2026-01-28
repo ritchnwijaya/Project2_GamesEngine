@@ -6430,6 +6430,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Grannys Selling Station
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 6293530970578694ab6e92a9a62c49b7, type: 3}
+      propertyPath: m_TagString
+      value: Item
+      objectReference: {fileID: 0}
     - target: {fileID: 1502877291743220047, guid: 6293530970578694ab6e92a9a62c49b7, type: 3}
       propertyPath: m_Name
       value: plank13
@@ -6486,6 +6490,12 @@ PrefabInstance:
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 6293530970578694ab6e92a9a62c49b7, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 984391370}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 6293530970578694ab6e92a9a62c49b7, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 984391369}
     - targetCorrespondingSourceObject: {fileID: -516098083770646512, guid: 6293530970578694ab6e92a9a62c49b7, type: 3}
       insertIndex: -1
       addedObject: {fileID: 202227061}
@@ -6637,6 +6647,48 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4460778059039108420, guid: ff8f9dc6f477d2b46a040718737bb4cf, type: 3}
+--- !u!1 &984391368 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 6293530970578694ab6e92a9a62c49b7, type: 3}
+  m_PrefabInstance: {fileID: 928556253}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &984391369
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 984391368}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46e2f186abe834f6f8a3b0040c1f9251, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ShippingBin
+  item: {fileID: 0}
+  onInteract:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!65 &984391370
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 984391368}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.7019196, y: 5.004396, z: 10.277298}
+  m_Center: {x: -0.35095978, y: 2.0021985, z: -1.9698391}
 --- !u!1 &992508467 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -1661769218366809254, guid: ff8f9dc6f477d2b46a040718737bb4cf, type: 3}
