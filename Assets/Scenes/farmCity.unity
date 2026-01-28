@@ -10840,6 +10840,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1817709925050044697, guid: f168c51a3e8664906b26f886c606e17c, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -18.999878
+      objectReference: {fileID: 0}
     - target: {fileID: 4581937153851128857, guid: f168c51a3e8664906b26f886c606e17c, type: 3}
       propertyPath: m_Name
       value: FarmerGirl
