@@ -1005,7 +1005,7 @@ Transform:
   m_GameObject: {fileID: 2352375236914067489}
   serializedVersion: 2
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -0.0000000016504202, y: 0.000003343416, z: 0.0000064195133}
+  m_LocalPosition: {x: -0, y: 0.0022, z: -0.0254}
   m_LocalScale: {x: 0.23, y: 0.07148219, z: 0.07148219}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2670,11 +2670,14 @@ MonoBehaviour:
   - {fileID: 6991225439892063537}
   - {fileID: 6610255758037499176}
   - {fileID: 5735820353196047535}
-  itemNameText: {fileID: 2407302739535310959}
-  itemDescriptionText: {fileID: 6593735463153623936}
+  itemInfoBox: {fileID: 0}
+  itemNameText: {fileID: 0}
+  itemDescriptionText: {fileID: 0}
   fadeIn: {fileID: 3980151027918367047}
   fadeOut: {fileID: 584514521790583989}
   yesNoPrompt: {fileID: 0}
+  moneyText: {fileID: 0}
+  shopListingManager: {fileID: 0}
 --- !u!114 &85281877474306086
 MonoBehaviour:
   m_ObjectHideFlags: 0
