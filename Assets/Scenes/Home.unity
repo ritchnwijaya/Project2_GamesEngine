@@ -443,7 +443,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.7040656, z: -0, w: 0.710135}
   m_LocalPosition: {x: -43.19, y: 3.42, z: -12.94}
-  m_LocalScale: {x: -12.106922, y: 8.5164, z: 1.5249999}
+  m_LocalScale: {x: 11.5, y: 8.5164, z: 1.5249999}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1824857729}
@@ -515,6 +515,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BedSleep
   item: {fileID: 0}
+  onInteract:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &1824857728
 GameObject:
   m_ObjectHideFlags: 0
@@ -802,7 +805,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.7040656, z: -0, w: 0.710135}
   m_LocalPosition: {x: -58.3569, y: 3.42, z: -13.07796}
-  m_LocalScale: {x: -12.106922, y: 8.5164, z: 1.5249999}
+  m_LocalScale: {x: 13.7, y: 8.5164, z: 1.5249999}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1824857729}

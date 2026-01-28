@@ -43,7 +43,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (Input.GetButtonDown("Fire1"))
         {
-            if (animator != null) animator.SetTrigger("Harvest");
+            //if (animator != null) animator.SetTrigger("Harvest");
             playerInteraction.Interact();
         }
 
@@ -67,6 +67,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void Move()
     {
+        if (controller == null || !controller.enabled) return;
         float directionX = Input.GetAxisRaw("Horizontal");
         float directionY = Input.GetAxisRaw("Vertical");
 

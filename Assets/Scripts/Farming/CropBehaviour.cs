@@ -121,11 +121,10 @@ public class CropBehaviour : MonoBehaviour
     // Only show harvestable model when in Harvestable state
     harvestable.SetActive(stateToSwitch == CropState.Harvestable);
     
-        /* seed.SetActive(false);
+        seed.SetActive(false);
         seedling.SetActive(false);
         harvestable.SetActive(false);
         wilted.SetActive(false);
- */
 
         switch (stateToSwitch)
         {
@@ -143,7 +142,7 @@ public class CropBehaviour : MonoBehaviour
                 if (!seedToGrow.regrowable)
                 {
                     harvestable.transform.parent = null;
-                    RemoveCrop();
+                    harvestable.GetComponent<InteractableObject>().onInteract.AddListener(RemoveCrop); 
                 }
                 break;
             case CropState.Wilted:
