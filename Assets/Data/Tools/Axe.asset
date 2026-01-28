@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 215cab0d17cc3448ba306a12ad8dd768, type: 3}
   m_Name: Axe
   m_EditorClassIdentifier: Assembly-CSharp::EquipmentData
-  description: to cut trees
+  description: To cut down wood
   thumbnail: {fileID: 121956524, guid: 1e95598f662fb42498bf00868da7f012, type: 3}
   gameModel: {fileID: 0}
+  cost: 0
   toolType: 2

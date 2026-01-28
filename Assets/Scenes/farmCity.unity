@@ -9292,6 +9292,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Shop
   item: {fileID: 11400000, guid: ab37982fd3fac4dd8aac8b76af82012a, type: 2}
+  onInteract:
+    m_PersistentCalls:
+      m_Calls: []
   shopItems:
   - {fileID: 11400000, guid: ab37982fd3fac4dd8aac8b76af82012a, type: 2}
   - {fileID: 11400000, guid: 79aab0c9890b6487089480ca933ff154, type: 2}
