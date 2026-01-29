@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a908a11f95c04639b59f2c3d24aef24, type: 3}
+  m_Name: WeatherData
+  m_EditorClassIdentifier: Assembly-CSharp::WeatherData
+  springWeather:
+  - weatherType: 0
+    probability: 0.1
+  - weatherType: 1
+    probability: 0.9
+  summerWeather:
+  - weatherType: 0
+    probability: 0.9
+  - weatherType: 1
+    probability: 0.1
+  fallWeather:
+  - weatherType: 0
+    probability: 0.4
+  - weatherType: 1
+    probability: 0.6
+  winterWeather:
+  - weatherType: 0
+    probability: 0.15
+  - weatherType: 2
+    probability: 0.85

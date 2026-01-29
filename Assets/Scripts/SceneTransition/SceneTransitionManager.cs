@@ -91,6 +91,7 @@ public class SceneTransitionManager : MonoBehaviour
 
         //Save the current location that we just switched to
         currentLocation = newLocation; 
+        FindFirstObjectByType<WeatherEffectController>()?.LoadParticle();
     }
 
 }
