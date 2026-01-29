@@ -9377,6 +9377,7 @@ MonoBehaviour:
   shopItems:
   - {fileID: 11400000, guid: ab37982fd3fac4dd8aac8b76af82012a, type: 2}
   - {fileID: 11400000, guid: 79aab0c9890b6487089480ca933ff154, type: 2}
+  - {fileID: 11400000, guid: 7c47ec5cea874452fb0d5ecbef4f9feb, type: 2}
 --- !u!1 &1707719381 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1695416474553627877, guid: ff8f9dc6f477d2b46a040718737bb4cf, type: 3}
