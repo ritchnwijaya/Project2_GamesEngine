@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bd9bef50e4af0407fa119ec9fdbe2a2e, type: 3}
-  m_Name: Cabbage Seed
+  m_Name: Pumpkin Seed
   m_EditorClassIdentifier: Assembly-CSharp::SeedData
   description: Seeds to grow cabbages
-  thumbnail: {fileID: -1438090721, guid: 9eb406832929a43cf88eb5d02ecd9a57, type: 3}
+  thumbnail: {fileID: -370537462, guid: 9eb406832929a43cf88eb5d02ecd9a57, type: 3}
   gameModel: {fileID: 0}
-  cost: 100
-  daysToGrow: 3
-  cropToYield: {fileID: 11400000, guid: dc1300084fc554449a9d8b30d267341c, type: 2}
-  seedling: {fileID: 2061090473712859506, guid: 8c50d3e938d614e529e8f07da4065e58, type: 3}
+  cost: 150
+  daysToGrow: 5
+  cropToYield: {fileID: 11400000, guid: 72d04f6e6d6f44667bc875731b6856a4, type: 2}
+  seedling: {fileID: 8256451200119501227, guid: ba785a29d69504b1e8ebbb3f99926a85, type: 3}
   regrowable: 0
   daysToRegrow: 0

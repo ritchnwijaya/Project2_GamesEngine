@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3330179b6d5d64dab9045ba558c7bed4, type: 3}
-  m_Name: Carrot
+  m_Name: Pumpkin
   m_EditorClassIdentifier: Assembly-CSharp::ItemData
-  description: Carrot
-  thumbnail: {fileID: -1989146162, guid: 61bbc5f77488e4a32b4172ad4b0f8689, type: 3}
-  gameModel: {fileID: 7559729917771181502, guid: 11fb4f4fa516245059629b56bc04a1cf, type: 3}
-  cost: 150
+  description: Pumpkin
+  thumbnail: {fileID: 178321290, guid: 61bbc5f77488e4a32b4172ad4b0f8689, type: 3}
+  gameModel: {fileID: 1251722658516048400, guid: 37375762d128c4a5f9684bc43ff3af79, type: 3}
+  cost: 500
