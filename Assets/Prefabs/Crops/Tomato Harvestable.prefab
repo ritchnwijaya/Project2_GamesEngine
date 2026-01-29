@@ -108,6 +108,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GrowableHarvestBehaviour
   item: {fileID: 11400000, guid: adef44772fc4a44a9a35ac698b509122, type: 2}
+  onInteract:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!64 &-6114737893937055050
 MeshCollider:
   m_ObjectHideFlags: 0

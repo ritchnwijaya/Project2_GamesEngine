@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ItemData
   description: The crop the player will harvest first
   thumbnail: {fileID: 0}
-  gameModel: {fileID: 5176926539354887203, guid: b225bd859a132420c85c9e84349a2832, type: 3}
+  gameModel: {fileID: 8571364275523538481, guid: 1e2367f1bfa9a453cb062cb8989c0b9f, type: 3}
   cost: 100
