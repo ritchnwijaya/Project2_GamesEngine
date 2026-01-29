@@ -30,6 +30,10 @@ public class GameStateManager : MonoBehaviour, ITimeTracker
     {
         UpdateShippingState(timestamp);
         UpdateFarmState(timestamp);  
+        if(timestamp.hour == 6 && timestamp.minute == 1) { 
+            RainOnLand();
+        
+        }
     }
 
     void UpdateShippingState(GameTimeStamp timestamp)
@@ -38,6 +42,26 @@ public class GameStateManager : MonoBehaviour, ITimeTracker
         {
             ShippingBin.ShipItems();
         }
+    }
+
+    void RainOnLand()
+    {
+        if (WeatherManager.Instance.WeatherToday != WeatherData.WeatherType.Rain) {
+            return;
+        }
+
+        List<LandSaveState> landData = LandManager.farmData.Item1;
+        
+
+        for(int i=0; i< landData.Count; i++)
+        {
+            if (landData[i].landStatus != Land.LandStatus.Soil)
+            {
+                landData[i] = new LandSaveState(Land.LandStatus.Watered, TimeManager.Instance.GetGameTimeStamp(), landData[i].obstacleStatus);
+
+            }
+        }
+        
     }
 
     void UpdateFarmState(GameTimeStamp timestamp)
@@ -134,9 +158,11 @@ public class GameStateManager : MonoBehaviour, ITimeTracker
         ItemSlotData equippedToolSlot = InventoryManager.Instance.GetEquippedSlot(InventorySlot.InventoryType.Tool);
         ItemSlotData equippedItemSlot = InventoryManager.Instance.GetEquippedSlot(InventorySlot.InventoryType.Item);
 
+        WeatherSaveState weather = WeatherSaveState.Export();
+
         //Time
         GameTimeStamp timestamp = TimeManager.Instance.GetGameTimeStamp();
-        return new GameSaveState(landData, cropData, toolSlots, itemSlots, equippedItemSlot, equippedToolSlot, timestamp, PlayerStats.Money, PlayerStats.Stamina);
+        return new GameSaveState(landData, cropData, toolSlots, itemSlots, equippedItemSlot, equippedToolSlot, timestamp, PlayerStats.Money, PlayerStats.Stamina, weather);
     }
 
     public void LoadSave()

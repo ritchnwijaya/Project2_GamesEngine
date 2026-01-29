@@ -696,6 +696,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: FarmerGirl
       objectReference: {fileID: 0}
+    - target: {fileID: 4581937153851128857, guid: f168c51a3e8664906b26f886c606e17c, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4715554596326324968, guid: f168c51a3e8664906b26f886c606e17c, type: 3}
       propertyPath: currentLocation
       value: 1

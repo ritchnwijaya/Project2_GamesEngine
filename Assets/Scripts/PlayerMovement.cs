@@ -36,7 +36,18 @@ public class PlayerMovement : MonoBehaviour
         Interact();
 
         if (Input.GetKey(KeyCode.RightBracket))
-            TimeManager.Instance.Tick();
+        {
+            if (Input.GetKey(KeyCode.LeftShift)) { 
+                //Advance the entire day
+                for(int i =0; i< 60*24;  i++)
+                {
+                    TimeManager.Instance.Tick();
+                }
+            } else
+            {
+                TimeManager.Instance.Tick();
+            }
+        }
     }
 
     public void Interact()

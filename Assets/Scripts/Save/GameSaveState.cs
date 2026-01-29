@@ -20,8 +20,9 @@ public class GameSaveState
     public GameTimeStamp timestamp;
     public int money;
     public int stamina;
+    public WeatherSaveState weatherSaveState;
 
-    public GameSaveState(List<LandSaveState> landData, List<CropSaveState> cropData, ItemSlotData[] toolSlots, ItemSlotData[] itemSlots, ItemSlotData equippedItemSlot, ItemSlotData equippedToolSlot, GameTimeStamp timestamp, int money, int stamina)
+    public GameSaveState(List<LandSaveState> landData, List<CropSaveState> cropData, ItemSlotData[] toolSlots, ItemSlotData[] itemSlots, ItemSlotData equippedItemSlot, ItemSlotData equippedToolSlot, GameTimeStamp timestamp, int money, int stamina,WeatherSaveState weatherSaveState)
     {
         this.landData = landData;
         this.cropData = cropData;
@@ -32,6 +33,7 @@ public class GameSaveState
         this.timestamp = timestamp;
         this.money = money;
         this.stamina = stamina;
+        this.weatherSaveState = weatherSaveState;
     }
 
         public void LoadData()

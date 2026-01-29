@@ -12,6 +12,12 @@ public class InteractableObject : MonoBehaviour
     public virtual void Pickup()
     {
         onInteract?.Invoke();
+
+        if (InventoryManager.Instance.SlotEquipped(InventorySlot.InventoryType.Item))
+        {
+            InventoryManager.Instance.HandToInventory(InventorySlot.InventoryType.Item);
+        }
+        
         InventoryManager.Instance.EquipHandSlot(item);
         InventoryManager.Instance.RenderHand();
 

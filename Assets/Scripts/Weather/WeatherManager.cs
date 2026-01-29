@@ -80,6 +80,15 @@ public class WeatherManager : MonoBehaviour, ITimeTracker
         return WeatherData.WeatherType.Sunny; 
     }
 
+    public void LoadWeather(WeatherSaveState saveState)
+    {
+        weatherSet = true;
+        WeatherToday = saveState.weather;
+
+        //Set the forecast 
+        WeatherTomorrow = ComputeWeather(TimeManager.Instance.GetGameTimeStamp().season);
+    }
+
 
     public void ClockUpdate(GameTimeStamp timestamp)
     {
@@ -97,6 +106,7 @@ public class WeatherManager : MonoBehaviour, ITimeTracker
                 WeatherToday = WeatherTomorrow;
                 
             }
+            UIManager.Instance.ChangeWeatherUI();
 
             //Set the forecast 
             WeatherTomorrow = ComputeWeather(timestamp.season);

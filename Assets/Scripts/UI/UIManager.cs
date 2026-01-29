@@ -49,6 +49,10 @@ public class UIManager : MonoBehaviour, ITimeTracker
     public Image StaminaUIImage;
     public int staminaCount;
 
+    [Header("Weather")]
+    public Sprite[] weatherUI;
+    public Image WeatherUIImage;
+
     private void Awake()
     {
         if(Instance!=null && Instance!= this)
@@ -68,6 +72,7 @@ public class UIManager : MonoBehaviour, ITimeTracker
         AssignSlotIndexes();
         RenderPlayerStats();
         DisplayItemInfo(null);
+        ChangeWeatherUI();
         //add UIManager to the list of objects TimeManager will notify when time updates
         TimeManager.Instance.RegisterTracker(this);
     }
@@ -223,5 +228,22 @@ public class UIManager : MonoBehaviour, ITimeTracker
         else if (staminaCount <= 115) StaminaUIImage.sprite = staminaUI[1]; // active
         else if (staminaCount <= 150) StaminaUIImage.sprite = staminaUI[0]; // energised
 
+    }
+    public void ChangeWeatherUI()
+    {
+        var WeatherToday = WeatherManager.Instance.WeatherToday;
+
+        switch (WeatherToday)
+        {
+            case WeatherData.WeatherType.Sunny:
+                WeatherUIImage.sprite = weatherUI[0];
+                break;
+            case WeatherData.WeatherType.Rain:
+                WeatherUIImage.sprite = weatherUI[1];
+                break;
+            case WeatherData.WeatherType.Snow:
+                WeatherUIImage.sprite = weatherUI[2];
+                break;
+        }
     }
 }
