@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Tomato Seeds
   m_EditorClassIdentifier: Assembly-CSharp::SeedData
   description: Seeds to grow tomatoes
-  thumbnail: {fileID: -370537462, guid: 9eb406832929a43cf88eb5d02ecd9a57, type: 3}
+  thumbnail: {fileID: 1900673086, guid: 9eb406832929a43cf88eb5d02ecd9a57, type: 3}
   gameModel: {fileID: 0}
   cost: 50
   daysToGrow: 4
