@@ -44,6 +44,11 @@ public class UIManager : MonoBehaviour, ITimeTracker
     [Header("Shop")]
     public ShopListingManager shopListingManager; 
 
+    [Header("Stamina")]
+    public Sprite[] staminaUI;
+    public Image StaminaUIImage;
+    public int staminaCount;
+
     private void Awake()
     {
         if(Instance!=null && Instance!= this)
@@ -58,6 +63,7 @@ public class UIManager : MonoBehaviour, ITimeTracker
 
     private void Start()
     {
+        PlayerStats.RestoreStamina();
         RenderInventory();
         AssignSlotIndexes();
         RenderPlayerStats();
@@ -200,11 +206,22 @@ public class UIManager : MonoBehaviour, ITimeTracker
     public void RenderPlayerStats()
     {
         moneyText.text = PlayerStats.Money + PlayerStats.CURRENCY; 
+        staminaCount = PlayerStats.Stamina;
+        ChangeStaminaUI();
     }
     
     public void OpenShop(List<ItemData> shopItems)
     {
         shopListingManager.gameObject.SetActive(true);
         shopListingManager.RenderShop(shopItems); 
+    }
+
+    public void ChangeStaminaUI()
+    {
+        if (staminaCount <= 45) StaminaUIImage.sprite = staminaUI[3]; // exhausted
+        else if (staminaCount <= 80) StaminaUIImage.sprite = staminaUI[2]; // tired
+        else if (staminaCount <= 115) StaminaUIImage.sprite = staminaUI[1]; // active
+        else if (staminaCount <= 150) StaminaUIImage.sprite = staminaUI[0]; // energised
+
     }
 }

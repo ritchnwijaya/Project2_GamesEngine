@@ -100,6 +100,13 @@ public class PlayerInteraction : MonoBehaviour
 
         if (selectedLand != null)
         {
+            if (PlayerStats.Stamina <= 0)
+            {
+                Debug.Log("Too tired to work!"); // Optional: Add a UI message later
+                return;
+            }
+            
+            PlayerStats.UseStamina(2);
             selectedLand.Interact();
             return;
         }

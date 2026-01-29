@@ -301,6 +301,8 @@ public class InventoryManager : MonoBehaviour
     //When giving the itemData value in the inspector, automatically set the quantity to 1 
     void ValidateInventorySlot(ItemSlotData slot)
     {
+        if (slot == null) return;
+        
         if(slot.itemData != null && slot.quantity == 0)
         {
             slot.quantity = 1;
