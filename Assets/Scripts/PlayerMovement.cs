@@ -8,6 +8,10 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float playerSpeed = 5f;
     [SerializeField] float sprintMultiplier = 1.6f;
 
+    [Header("Run Timing")]
+    [SerializeField] float runAfterSeconds = 2f;   // erst nach 2s laufen -> rennen
+    private float moveHeldTime = 0f;
+
     [Header("Gravity")]
     [SerializeField] float gravity = -9.81f;
     private float verticalVelocity;
@@ -37,13 +41,13 @@ public class PlayerMovement : MonoBehaviour
 
         if (Input.GetKey(KeyCode.RightBracket))
         {
-            if (Input.GetKey(KeyCode.LeftShift)) { 
-                //Advance the entire day
-                for(int i =0; i< 60*24;  i++)
-                {
+            if (Input.GetKey(KeyCode.LeftShift))
+            {
+                // Advance the entire day
+                for (int i = 0; i < 60 * 24; i++)
                     TimeManager.Instance.Tick();
-                }
-            } else
+            }
+            else
             {
                 TimeManager.Instance.Tick();
             }
@@ -52,9 +56,10 @@ public class PlayerMovement : MonoBehaviour
 
     public void Interact()
     {
+        if (playerInteraction == null) return;
+
         if (Input.GetButtonDown("Fire1"))
         {
-            //if (animator != null) animator.SetTrigger("Harvest");
             playerInteraction.Interact();
         }
 
@@ -69,7 +74,7 @@ public class PlayerMovement : MonoBehaviour
             playerInteraction.ItemInteract();
         }
 
-        //Keep items 
+        // Keep items
         if (Input.GetButtonDown("Fire3"))
         {
             playerInteraction.ItemKeep();
@@ -79,10 +84,21 @@ public class PlayerMovement : MonoBehaviour
     public void Move()
     {
         if (controller == null || !controller.enabled) return;
+
         float directionX = Input.GetAxisRaw("Horizontal");
         float directionY = Input.GetAxisRaw("Vertical");
 
         Vector3 dir = new Vector3(directionX, 0f, directionY).normalized;
+
+        bool isMoving = dir.magnitude > 0.01f;
+
+        // Timer: zählt nur hoch, solange du wirklich läufst
+        if (isMoving) moveHeldTime += Time.deltaTime;
+        else moveHeldTime = 0f;
+
+        // Run-Bedingung: Shift gedrückt UND schon lange genug am Laufen
+        bool wantsRun = Input.GetKey(KeyCode.LeftShift);
+        bool isRunning = isMoving && wantsRun && moveHeldTime >= runAfterSeconds;
 
         // Gravity (CharacterController braucht das manuell)
         if (controller.isGrounded && verticalVelocity < 0f)
@@ -90,16 +106,15 @@ public class PlayerMovement : MonoBehaviour
 
         verticalVelocity += gravity * Time.deltaTime;
 
-        // Rotation nur am Model (verhindert "springen")
-        if (dir.magnitude >= 0.1f && model != null)
+        // Rotation nur am Model
+        if (isMoving && model != null)
         {
             Quaternion targetRotation = Quaternion.LookRotation(dir);
             model.rotation = Quaternion.Slerp(model.rotation, targetRotation, Time.deltaTime * 10f);
         }
 
-        // Sprint / Speed
-        bool sprint = Input.GetKey(KeyCode.LeftShift);
-        float currentSpeed = playerSpeed * (sprint ? sprintMultiplier : 1f);
+        // Speed: erst Walk, dann Run (nach Timer)
+        float currentSpeed = playerSpeed * (isRunning ? sprintMultiplier : 1f);
 
         // Move
         Vector3 move = dir * currentSpeed;
@@ -107,19 +122,11 @@ public class PlayerMovement : MonoBehaviour
 
         controller.Move(move * Time.deltaTime);
 
-        // Animator Speed (Idle/Walk/Run)
-        // Animator Speed (Idle/Walk/Run) -> aus echter Bewegung
-    if (animator != null)
-    {
-    // echte horizontale Geschwindigkeit (ohne Y)
-    Vector3 v = controller.velocity;
-    v.y = 0f;
-
-    // normalisieren auf 0..1 (walk) oder 0..2 (walk+run), wie du willst
-    float speed01 = Mathf.InverseLerp(0f, playerSpeed * sprintMultiplier, v.magnitude);
-
-    // glätten, damit es nicht flackert
-    animator.SetFloat("Speed", speed01, 0.1f, Time.deltaTime);
-    }
+        // Animator Parameter setzen (Option 1)
+        if (animator != null)
+        {
+            animator.SetBool("IsMoving", isMoving);
+            animator.SetBool("IsRunning", isRunning);
+        }
     }
 }
