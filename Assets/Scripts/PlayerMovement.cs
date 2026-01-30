@@ -108,7 +108,18 @@ public class PlayerMovement : MonoBehaviour
         controller.Move(move * Time.deltaTime);
 
         // Animator Speed (Idle/Walk/Run)
-        if (animator != null)
-            animator.SetFloat("Speed", dir.magnitude * (sprint ? 1f : 0.5f));
+        // Animator Speed (Idle/Walk/Run) -> aus echter Bewegung
+    if (animator != null)
+    {
+    // echte horizontale Geschwindigkeit (ohne Y)
+    Vector3 v = controller.velocity;
+    v.y = 0f;
+
+    // normalisieren auf 0..1 (walk) oder 0..2 (walk+run), wie du willst
+    float speed01 = Mathf.InverseLerp(0f, playerSpeed * sprintMultiplier, v.magnitude);
+
+    // glätten, damit es nicht flackert
+    animator.SetFloat("Speed", speed01, 0.1f, Time.deltaTime);
+    }
     }
 }
