@@ -172,18 +172,28 @@ public class InventoryManager : MonoBehaviour
 
     // handle the player's equipped item in the scene
     public void RenderHand()
+{
+    // reset objects on hand
+    if (handPoint.childCount > 0)
     {
-        // reset objects on hand
-        if(handPoint.childCount > 0)
-        {
-            Destroy(handPoint.GetChild(0).gameObject);
-        }
-        // instantiate the game model on the player's hand and put it on screen
-        if(SlotEquipped(InventorySlot.InventoryType.Item))
-        {
-            Instantiate(GetEquippedSlotItem(InventorySlot.InventoryType.Item).gameModel, handPoint);
-        }
+        Destroy(handPoint.GetChild(0).gameObject);
     }
+
+    // Priorität: Items in der Hand > sonst Tool in der Hand
+    if (SlotEquipped(InventorySlot.InventoryType.Item))
+    {
+        ItemData item = GetEquippedSlotItem(InventorySlot.InventoryType.Item);
+        if (item != null && item.gameModel != null)
+            Instantiate(item.gameModel, handPoint);
+    }
+    else if (SlotEquipped(InventorySlot.InventoryType.Tool))
+    {
+        ItemData tool = GetEquippedSlotItem(InventorySlot.InventoryType.Tool);
+        if (tool != null && tool.gameModel != null)
+            Instantiate(tool.gameModel, handPoint);
+    }
+}
+
 
     //Inventory Slot Data 
     //Get the slot item (ItemData) 
