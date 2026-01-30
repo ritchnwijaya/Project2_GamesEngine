@@ -59,9 +59,10 @@ public class PlayerMovement : MonoBehaviour
         if (playerInteraction == null) return;
 
         if (Input.GetButtonDown("Fire1"))
-        {
-            playerInteraction.Interact();
-        }
+{
+    animator.SetTrigger("Water");
+    playerInteraction.DoLandToolAction(); // sofort bewässern
+}
 
         if (Input.GetButtonDown("Fire2"))
         {
