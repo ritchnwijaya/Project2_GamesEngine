@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
@@ -8,6 +9,10 @@ using TMPro;
 public class UIManager : MonoBehaviour, ITimeTracker 
 {
     public static UIManager Instance {get; private set;}
+
+    public GameObject pauseMenu; 
+    private bool isPaused = false;
+
     [Header("Status Bar")]
     //Tool equip slot on the status bar
     public Image toolEquipSlot;
@@ -53,6 +58,43 @@ public class UIManager : MonoBehaviour, ITimeTracker
     public Sprite[] weatherUI;
     public Image WeatherUIImage;
 
+    void Update()
+    {
+        // Listen for the Escape key to toggle the menu
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            TogglePause();
+        }
+    }
+
+    public void TogglePause()
+    {
+        isPaused = !isPaused;
+        pauseMenu.SetActive(isPaused);
+
+        Time.timeScale = isPaused ? 0f : 1f; 
+    }
+
+    public void Resume()
+    {
+        isPaused = false;
+        pauseMenu.SetActive(false);
+        Time.timeScale = 1f;
+    }
+
+    public void GoToTitle()
+    {
+        Time.timeScale = 1f; 
+        Destroy(SceneTransitionManager.Instance.gameObject);
+        SceneManager.LoadScene("Title");
+    }
+
+    public void QuitGame()
+    {
+        Debug.Log("Quitting Game...");
+        Application.Quit(); 
+    }
+
     private void Awake()
     {
         if(Instance!=null && Instance!= this)
@@ -67,6 +109,10 @@ public class UIManager : MonoBehaviour, ITimeTracker
 
     private void Start()
     {
+        isPaused = false;
+        pauseMenu.SetActive(false);
+        Time.timeScale = 1f;
+        
         PlayerStats.RestoreStamina();
         RenderInventory();
         AssignSlotIndexes();
