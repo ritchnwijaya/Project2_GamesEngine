@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EquipmentData
   description: To cut down wood
   thumbnail: {fileID: 121956524, guid: 1e95598f662fb42498bf00868da7f012, type: 3}
-  gameModel: {fileID: 0}
+  gameModel: {fileID: 1411756613109727287, guid: 104f5f5758c678d44865b369eebf3272, type: 3}
   cost: 0
   toolType: 2
