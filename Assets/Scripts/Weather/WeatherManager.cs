@@ -106,6 +106,7 @@ public class WeatherManager : MonoBehaviour, ITimeTracker
                 WeatherToday = WeatherTomorrow;
                 
             }
+            FindFirstObjectByType<WeatherEffectController>()?.LoadParticle();
             UIManager.Instance.ChangeWeatherUI();
 
             //Set the forecast 

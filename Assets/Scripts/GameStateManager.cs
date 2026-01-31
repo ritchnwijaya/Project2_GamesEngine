@@ -46,6 +46,9 @@ public class GameStateManager : MonoBehaviour, ITimeTracker
 
     void RainOnLand()
     {
+        if (LandManager.farmData == null || LandManager.farmData.Item1 == null) {
+        return; 
+    }
         if (WeatherManager.Instance.WeatherToday != WeatherData.WeatherType.Rain) {
             return;
         }
@@ -60,6 +63,11 @@ public class GameStateManager : MonoBehaviour, ITimeTracker
                 landData[i] = new LandSaveState(Land.LandStatus.Watered, TimeManager.Instance.GetGameTimeStamp(), landData[i].obstacleStatus);
 
             }
+        }
+        WeatherEffectController effectController = FindFirstObjectByType<WeatherEffectController>();
+        if (effectController != null)
+        {
+            effectController.LoadParticle();
         }
         
     }
