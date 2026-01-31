@@ -56,18 +56,67 @@ public class PlayerMovement : MonoBehaviour
 
     public void Interact()
     {
+        // Safety
         if (playerInteraction == null) return;
+        if (animator == null) return;
 
-        if (Input.GetButtonDown("Fire1"))
-{
-    animator.SetTrigger("Water");
-    playerInteraction.DoLandToolAction(); // sofort bewässern
-}
+        // Use tool (Fire1 = meistens Linksklick)
+        // Fallback zusätzlich auf Mouse0, falls Fire1 im Projekt nicht gemappt ist
+        if (Input.GetButtonDown("Fire1") || Input.GetMouseButtonDown(0))
+        {
+            // nur wenn wir auf Land stehen und nicht gerade ein Item in der Hand halten
+            if (!playerInteraction.CanStartLandToolAction())
+                return;
 
+            // nur wenn ein Tool equipped ist
+            if (!InventoryManager.Instance.SlotEquipped(InventorySlot.InventoryType.Tool))
+                return;
+
+            // welches Tool ist equipped?
+            ItemData equipped = InventoryManager.Instance.GetEquippedSlotItem(InventorySlot.InventoryType.Tool);
+            EquipmentData tool = equipped as EquipmentData;
+            if (tool == null)
+                return;
+
+            // optional: Trigger resetten, damit nix "hängen bleibt"
+            animator.ResetTrigger("Water");
+            animator.ResetTrigger("Dig");
+            animator.ResetTrigger("SwingHoe");
+            animator.ResetTrigger("SwingAxe");
+            animator.ResetTrigger("SwingPick");
+
+            // richtigen Trigger setzen (deine Triggernamen aus dem Animator)
+            switch (tool.toolType)
+            {
+                case EquipmentData.ToolType.WateringCan:
+                    animator.SetTrigger("Water");
+                    break;
+
+                case EquipmentData.ToolType.Hoe:
+                    animator.SetTrigger("SwingHoe");
+                    break;
+
+                case EquipmentData.ToolType.Axe:
+                    animator.SetTrigger("SwingAxe");
+                    break;
+
+                case EquipmentData.ToolType.Pickaxe:
+                    animator.SetTrigger("SwingPick");
+                    break;
+
+                case EquipmentData.ToolType.Shovel:
+                    animator.SetTrigger("Dig");
+                    break;
+            }
+
+            // Action ausführen (ohne Animation Events)
+            playerInteraction.DoLandToolAction();
+        }
+
+        // Pickup/store (Fire2)
         if (Input.GetButtonDown("Fire2"))
         {
-            if (animator != null &&
-                InventoryManager.Instance.SlotEquipped(InventorySlot.InventoryType.Item))
+            if (InventoryManager.Instance.SlotEquipped(InventorySlot.InventoryType.Item))
             {
                 animator.SetTrigger("StoreItem");
             }
@@ -75,7 +124,7 @@ public class PlayerMovement : MonoBehaviour
             playerInteraction.ItemInteract();
         }
 
-        // Keep items
+        // Keep items (Fire3)
         if (Input.GetButtonDown("Fire3"))
         {
             playerInteraction.ItemKeep();
@@ -123,11 +172,8 @@ public class PlayerMovement : MonoBehaviour
 
         controller.Move(move * Time.deltaTime);
 
-        // Animator Parameter setzen (Option 1)
-        if (animator != null)
-        {
-            animator.SetBool("IsMoving", isMoving);
-            animator.SetBool("IsRunning", isRunning);
-        }
+        // Animator Parameter setzen
+        animator.SetBool("IsMoving", isMoving);
+        animator.SetBool("IsRunning", isRunning);
     }
 }

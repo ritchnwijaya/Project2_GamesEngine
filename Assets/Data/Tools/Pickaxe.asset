@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EquipmentData
   description: To destroy blocking stones
   thumbnail: {fileID: -1936203733, guid: 1e95598f662fb42498bf00868da7f012, type: 3}
-  gameModel: {fileID: 0}
+  gameModel: {fileID: 5584978970352628158, guid: 7f38cecc80e85da469fb06db3ecd9567, type: 3}
   cost: 0
   toolType: 3

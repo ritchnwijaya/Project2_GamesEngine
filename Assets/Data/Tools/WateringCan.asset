@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EquipmentData
   description: To water your plants
   thumbnail: {fileID: 21300000, guid: 458d0b887bd9e48139297fcaf4de8a86, type: 3}
-  gameModel: {fileID: 0}
+  gameModel: {fileID: 3392962961653219720, guid: 2d8c58cddef1cd9469e896eb35e2bfba, type: 3}
   cost: 0
   toolType: 1
