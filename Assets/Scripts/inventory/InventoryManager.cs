@@ -114,12 +114,9 @@ public class InventoryManager : MonoBehaviour
             }
         }
 
-        //Update the changes in the scene
-        if (inventoryType == InventorySlot.InventoryType.Item)
-        {
-            RenderHand();
-        }
 
+        RenderHand();
+        
         //Update changes in the inventory
         UIManager.Instance.RenderInventory();
     }

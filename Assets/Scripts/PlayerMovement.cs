@@ -74,6 +74,13 @@ public class PlayerMovement : MonoBehaviour
 
             // welches Tool ist equipped?
             ItemData equipped = InventoryManager.Instance.GetEquippedSlotItem(InventorySlot.InventoryType.Tool);
+
+            if (equipped is SeedData)
+            {
+                animator.SetTrigger("Water"); // Or use a specific "Plant" trigger if you have one
+                playerInteraction.DoLandToolAction(); 
+                return;
+            }
             EquipmentData tool = equipped as EquipmentData;
             if (tool == null)
                 return;

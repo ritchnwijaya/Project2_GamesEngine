@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bd9bef50e4af0407fa119ec9fdbe2a2e, type: 3}
-  m_Name: Cabbage Seed
+  m_Name: Cabbage seed
   m_EditorClassIdentifier: Assembly-CSharp::SeedData
   description: Seeds to grow cabbages
   thumbnail: {fileID: -1438090721, guid: 9eb406832929a43cf88eb5d02ecd9a57, type: 3}
