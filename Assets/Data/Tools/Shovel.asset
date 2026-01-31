@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EquipmentData
   description: To dig out grass
   thumbnail: {fileID: -217756553, guid: 1e95598f662fb42498bf00868da7f012, type: 3}
-  gameModel: {fileID: 0}
+  gameModel: {fileID: 355011302026938826, guid: 7968f8057ccac0c49b0936d63337e4e0, type: 3}
   cost: 0
   toolType: 4

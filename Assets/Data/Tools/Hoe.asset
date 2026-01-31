@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EquipmentData
   description: To tile dirt
   thumbnail: {fileID: 736480326, guid: 1e95598f662fb42498bf00868da7f012, type: 3}
-  gameModel: {fileID: 0}
+  gameModel: {fileID: 251340143135517782, guid: b5a8a295e7c83c24ba25ef3ea556ad63, type: 3}
   cost: 0
   toolType: 0
