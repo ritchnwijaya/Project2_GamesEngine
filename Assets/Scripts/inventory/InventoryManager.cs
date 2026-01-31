@@ -176,7 +176,7 @@ public class InventoryManager : MonoBehaviour
     // reset objects on hand
     if (handPoint.childCount > 0)
     {
-        Destroy(handPoint.GetChild(0).gameObject);
+       foreach (Transform child in handPoint) { Destroy(child.gameObject); }
     }
 
     // Priorität: Items in der Hand > sonst Tool in der Hand
