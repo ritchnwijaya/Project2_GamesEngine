@@ -68,12 +68,19 @@ public class UIManager : MonoBehaviour, ITimeTracker
     }
 
     public void TogglePause()
-    {
-        isPaused = !isPaused;
-        pauseMenu.SetActive(isPaused);
+{
+    isPaused = !isPaused;
 
-        Time.timeScale = isPaused ? 0f : 1f; 
+    if (isPaused)
+    {
+        var blur = pauseMenu.GetComponentInChildren<PauseBackgroundBlur>(true);
+        if (blur != null) blur.Capture();
     }
+
+    pauseMenu.SetActive(isPaused);
+    Time.timeScale = isPaused ? 0f : 1f;
+}
+
 
     public void Resume()
     {
