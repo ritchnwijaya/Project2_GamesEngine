@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::WeatherData
   springWeather:
   - weatherType: 0
-    probability: 1
+    probability: 0.1
   - weatherType: 1
-    probability: 0
+    probability: 0.9
   summerWeather:
   - weatherType: 0
     probability: 0.9

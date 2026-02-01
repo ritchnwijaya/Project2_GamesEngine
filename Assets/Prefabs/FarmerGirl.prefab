@@ -5031,7 +5031,8 @@ Transform:
   m_LocalPosition: {x: -0.465, y: 0.496, z: 0.705}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 2661090169624420111}
   m_Father: {fileID: 1324470207301305844}
   m_LocalEulerAnglesHint: {x: -185.73, y: 0, z: 0}
 --- !u!1 &5443392116205391243
@@ -5612,6 +5613,37 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: 999
+--- !u!1 &5814380026714465099
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2661090169624420111}
+  m_Layer: 0
+  m_Name: ToolOffset
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2661090169624420111
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5814380026714465099}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5338372652338106722}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5867078920340871811
 GameObject:
   m_ObjectHideFlags: 0
@@ -9113,6 +9145,7 @@ GameObject:
   - component: {fileID: 8620633971895889926}
   - component: {fileID: 1118696657788659028}
   - component: {fileID: 4424579851054310}
+  - component: {fileID: 6028046281553487623}
   m_Layer: 0
   m_Name: FarmerGirl
   m_TagString: Untagged
@@ -9179,6 +9212,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WeatherManager
   weatherData: {fileID: 11400000, guid: 5db6c0453d6254758a86866eafe329d6, type: 2}
+--- !u!114 &6028046281553487623
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8377530459145620084}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85a36c675107b0d4fbfc656c9a26a1a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HandPointBinder
+  handPoint: {fileID: 5338372652338106722}
+  animator: {fileID: 7967530233780506702}
+  useRightHand: 1
 --- !u!1 &8557872437895464365
 GameObject:
   m_ObjectHideFlags: 0

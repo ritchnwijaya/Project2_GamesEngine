@@ -169,27 +169,30 @@ public class InventoryManager : MonoBehaviour
 
     // handle the player's equipped item in the scene
     public void RenderHand()
-{
-    // reset objects on hand
-    if (handPoint.childCount > 0)
     {
-       foreach (Transform child in handPoint) { Destroy(child.gameObject); }
-    }
+        Transform visualOffset = handPoint.Find("ToolOffset");
+        Transform spawnTarget = (visualOffset != null) ? visualOffset : handPoint;
 
-    // Priorität: Items in der Hand > sonst Tool in der Hand
-    if (SlotEquipped(InventorySlot.InventoryType.Item))
-    {
-        ItemData item = GetEquippedSlotItem(InventorySlot.InventoryType.Item);
-        if (item != null && item.gameModel != null)
-            Instantiate(item.gameModel, handPoint);
+        // reset objects on hand
+        if (spawnTarget.childCount > 0)
+        {
+        foreach (Transform child in spawnTarget) { Destroy(child.gameObject); }
+        }
+
+        // Priorität: Items in der Hand > sonst Tool in der Hand
+        if (SlotEquipped(InventorySlot.InventoryType.Item))
+        {
+            ItemData item = GetEquippedSlotItem(InventorySlot.InventoryType.Item);
+            if (item != null && item.gameModel != null)
+                Instantiate(item.gameModel, spawnTarget);
+        }
+        else if (SlotEquipped(InventorySlot.InventoryType.Tool))
+        {
+            ItemData tool = GetEquippedSlotItem(InventorySlot.InventoryType.Tool);
+            if (tool != null && tool.gameModel != null)
+                Instantiate(tool.gameModel, spawnTarget);
+        }
     }
-    else if (SlotEquipped(InventorySlot.InventoryType.Tool))
-    {
-        ItemData tool = GetEquippedSlotItem(InventorySlot.InventoryType.Tool);
-        if (tool != null && tool.gameModel != null)
-            Instantiate(tool.gameModel, handPoint);
-    }
-}
 
 
     //Inventory Slot Data 

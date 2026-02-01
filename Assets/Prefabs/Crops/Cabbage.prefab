@@ -275,6 +275,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InteractableObject
   item: {fileID: 11400000, guid: dc1300084fc554449a9d8b30d267341c, type: 2}
+  onInteract:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!135 &2090604137801454060
 SphereCollider:
   m_ObjectHideFlags: 0
