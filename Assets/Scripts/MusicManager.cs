@@ -5,14 +5,14 @@ public class MusicManager : MonoBehaviour
 {
     public static MusicManager Instance;
 
-    [Header("Music")]
-    public AudioSource audioSource;
-    public AudioClip scene1Music;
-    public AudioClip scene2Music;
+    [SerializeField] private AudioSource audioSource;
 
-    private string currentSceneName;
+    [Header("Scene Music")]
+    [SerializeField] private AudioClip startMenuMusic;
+    [SerializeField] private AudioClip scene1Music;
+    [SerializeField] private AudioClip scene2Music;
 
-    void Awake()
+    private void Awake()
     {
         if (Instance != null && Instance != this)
         {
@@ -23,25 +23,18 @@ public class MusicManager : MonoBehaviour
         Instance = this;
         DontDestroyOnLoad(gameObject);
 
-        if (audioSource == null)
-            audioSource = GetComponent<AudioSource>();
+        if (!audioSource) audioSource = GetComponent<AudioSource>();
 
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
-    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        if (scene.name == currentSceneName)
-            return;
-
-        currentSceneName = scene.name;
-
         AudioClip newClip = null;
 
-        if (scene.name == "Home")
-            newClip = scene1Music;
-        else if (scene.name == "farmCity")
-            newClip = scene2Music;
+        if (scene.name == "Title")          newClip = startMenuMusic;  // <-- Startszene Name!
+        else if (scene.name == "Home")    newClip = scene1Music;
+        else if (scene.name == "farmCity")    newClip = scene2Music;
 
         if (newClip != null && audioSource.clip != newClip)
         {
