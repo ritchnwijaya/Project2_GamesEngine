@@ -64,6 +64,13 @@ public class PlayerMovement : MonoBehaviour
         // Fallback zusätzlich auf Mouse0, falls Fire1 im Projekt nicht gemappt ist
         if (Input.GetButtonDown("Fire1") || Input.GetMouseButtonDown(0))
         {
+
+            animator.ResetTrigger("Water");
+            animator.ResetTrigger("Dig");
+            animator.ResetTrigger("SwingHoe");
+            animator.ResetTrigger("SwingAxe");
+            animator.ResetTrigger("SwingPick");
+
             // nur wenn wir auf Land stehen und nicht gerade ein Item in der Hand halten
             if (!playerInteraction.CanStartLandToolAction())
                 return;
@@ -77,7 +84,6 @@ public class PlayerMovement : MonoBehaviour
 
             if (equipped is SeedData)
             {
-                animator.SetTrigger("Water"); // Or use a specific "Plant" trigger if you have one
                 playerInteraction.DoLandToolAction(); 
                 return;
             }
@@ -85,12 +91,7 @@ public class PlayerMovement : MonoBehaviour
             if (tool == null)
                 return;
 
-            // optional: Trigger resetten, damit nix "hängen bleibt"
-            animator.ResetTrigger("Water");
-            animator.ResetTrigger("Dig");
-            animator.ResetTrigger("SwingHoe");
-            animator.ResetTrigger("SwingAxe");
-            animator.ResetTrigger("SwingPick");
+            
 
             // richtigen Trigger setzen (deine Triggernamen aus dem Animator)
             switch (tool.toolType)
