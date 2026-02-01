@@ -44,4 +44,10 @@ public class PlayerStats
         UIManager.Instance.RenderPlayerStats();
     }
 
+    public static void ResetStats()
+    {
+        Money = 0;
+        Stamina = 150; 
+    }
+
 }

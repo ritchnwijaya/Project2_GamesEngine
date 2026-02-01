@@ -13,6 +13,7 @@ public class MainMenu : MonoBehaviour
 
     public void NewGame()
     {
+        PlayerStats.ResetStats();
         StartCoroutine(LoadGameAsync(SceneTransitionManager.Location.Home, null));
     }
 
