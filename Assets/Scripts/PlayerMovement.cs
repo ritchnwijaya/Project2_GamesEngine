@@ -124,11 +124,6 @@ public class PlayerMovement : MonoBehaviour
         // Pickup/store (Fire2)
         if (Input.GetButtonDown("Fire2"))
         {
-            if (InventoryManager.Instance.SlotEquipped(InventorySlot.InventoryType.Item))
-            {
-                animator.SetTrigger("StoreItem");
-            }
-
             playerInteraction.ItemInteract();
         }
 
