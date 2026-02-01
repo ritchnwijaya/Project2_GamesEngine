@@ -88,6 +88,17 @@ public class UIManager : MonoBehaviour, ITimeTracker
         pauseMenu.SetActive(false);
         Time.timeScale = 1f;
     }
+    
+    public void PlayClick()
+{
+    UIAudioPlayer.Instance?.PlayClick();
+}
+
+public void PlayHover()
+{
+    UIAudioPlayer.Instance?.PlayHover();
+}
+
 
     public void GoToTitle()
     {
