@@ -14,6 +14,7 @@ public class MainMenu : MonoBehaviour
     public void NewGame()
     {
         PlayerStats.ResetStats();
+        LandManager.farmData = null;
         StartCoroutine(LoadGameAsync(SceneTransitionManager.Location.Home, null));
     }
 
